@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3]
+[gd_scene load_steps=33 format=3]
 
 [ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
 [ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
@@ -17,34 +17,29 @@
 [ext_resource type="PackedScene" path="res://coin.tscn" id="5_coin"]
 [ext_resource type="PackedScene" path="res://energy_cell.tscn" id="6_cell"]
 [ext_resource type="PackedScene" path="res://portal.tscn" id="7_portal"]
-[ext_resource type="PackedScene" path="res://tablet.tscn" id="9_tab"]
-[ext_resource type="PackedScene" path="res://shrine.tscn" id="10_shr"]
-[ext_resource type="PackedScene" path="res://ambient_motes.tscn" id="11_motes"]
-[ext_resource type="Texture2D" path="res://Tiles/ground_top.png" id="12_top"]
-[ext_resource type="Texture2D" path="res://Tiles/ground_fill.png" id="13_fill"]
 [ext_resource type="PackedScene" path="res://level_4.tscn" id="8_next"]
+[ext_resource type="Script" path="res://forest/terrain_piece.gd" id="s_terrain"]
+[ext_resource type="Script" path="res://forest/glow_plant.gd" id="s_glow"]
+[ext_resource type="Script" path="res://forest/bounce_shroom.gd" id="s_shroom"]
+[ext_resource type="Script" path="res://forest/tree_decor.gd" id="s_tree"]
+[ext_resource type="Script" path="res://forest/checkpoint.gd" id="s_check"]
+[ext_resource type="Script" path="res://forest/kill_zone.gd" id="s_kill"]
+[ext_resource type="Script" path="res://forest/atmosphere.gd" id="s_atmo"]
+[ext_resource type="Script" path="res://forest/foreground_layer.gd" id="s_fg"]
+[ext_resource type="Script" path="res://forest/ambient_light.gd" id="s_amb"]
+[ext_resource type="Script" path="res://forest/pond.gd" id="s_pond"]
+[ext_resource type="Script" path="res://forest/waterfall.gd" id="s_fall"]
+[ext_resource type="Script" path="res://forest/ruin_decor.gd" id="s_ruin"]
 
-[sub_resource type="RectangleShape2D" id="GroundShape"]
-size = Vector2(3648, 120)
+[sub_resource type="RectangleShape2D" id="wall"]
+size = Vector2(120, 2600)
 
-[sub_resource type="RectangleShape2D" id="WallShape"]
-size = Vector2(80, 2400)
+[sub_resource type="RectangleShape2D" id="chasm"]
+size = Vector2(1000, 300)
 
-[sub_resource type="RectangleShape2D" id="PS0"]
-size = Vector2(250, 32)
-
-[sub_resource type="RectangleShape2D" id="PS1"]
-size = Vector2(230, 32)
-
-[sub_resource type="RectangleShape2D" id="PS2"]
-size = Vector2(230, 32)
-
-[sub_resource type="RectangleShape2D" id="PS3"]
-size = Vector2(250, 32)
-
-[node name="Level" type="Node2D"]
+[node name="Level3" type="Node2D"]
 script = ExtResource("1_level")
-level_title = "Level 3  ·  The Warden"
+level_title = "Level 3  ·  The Warden's Ruin"
 level_number = 3
 is_boss_level = true
 next_level = ExtResource("8_next")
@@ -184,221 +179,399 @@ centered = false
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Ground" type="StaticBody2D" parent="World"]
+[node name="Bounds" type="StaticBody2D" parent="World"]
 collision_layer = 1
 
-[node name="Fill" type="TextureRect" parent="World/Ground"]
-texture_filter = 1
-modulate = Color(0.17, 0.22, 0.3, 1)
-offset_left = -1825.0
-offset_top = -4.0
-offset_right = 1825.0
-offset_bottom = 600.0
-texture = ExtResource("13_fill")
-stretch_mode = 1
+[node name="WallLeft" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(-760, -500)
+shape = SubResource("wall")
 
-[node name="Top" type="TextureRect" parent="World/Ground"]
-texture_filter = 1
-modulate = Color(0.26, 0.33, 0.44, 1)
-offset_left = -1825.0
-offset_top = -72.5
-offset_right = 1825.0
-offset_bottom = -2.5
-texture = ExtResource("12_top")
-stretch_mode = 1
+[node name="WallRight" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(12660, -500)
+shape = SubResource("wall")
 
-[node name="Edge" type="ColorRect" parent="World/Ground"]
-offset_left = -1825.0
-offset_top = -74.0
-offset_right = 1825.0
-offset_bottom = -70.0
-color = Color(0.4, 0.88, 1, 0.35)
+[node name="BackDecor" type="Node2D" parent="World"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground"]
-position = Vector2(0, -10)
-shape = SubResource("GroundShape")
+[node name="T0" type="Node2D" parent="World/BackDecor"]
+position = Vector2(1538, -20)
+script = ExtResource("s_tree")
+trunk_width = 206.0
+tree_height = 1621.0
 
-[node name="Motes" parent="World" instance=ExtResource("11_motes")]
-position = Vector2(0, -330)
+[node name="T1" type="Node2D" parent="World/BackDecor"]
+position = Vector2(2455, -20)
+script = ExtResource("s_tree")
+trunk_width = 160.0
+tree_height = 1773.0
 
-[node name="WallLeft" type="StaticBody2D" parent="World"]
-position = Vector2(-1865, -1100)
+[node name="T2" type="Node2D" parent="World/BackDecor"]
+position = Vector2(5862, -60)
+script = ExtResource("s_tree")
+trunk_width = 135.0
+tree_height = 1588.0
+
+[node name="T3" type="Node2D" parent="World/BackDecor"]
+position = Vector2(6232, -60)
+script = ExtResource("s_tree")
+trunk_width = 140.0
+tree_height = 1118.0
+
+[node name="T4" type="Node2D" parent="World/BackDecor"]
+position = Vector2(7234, -60)
+script = ExtResource("s_tree")
+trunk_width = 215.0
+tree_height = 1536.0
+
+[node name="T5" type="Node2D" parent="World/BackDecor"]
+position = Vector2(10076, -20)
+script = ExtResource("s_tree")
+trunk_width = 181.0
+tree_height = 1417.0
+
+[node name="T6" type="Node2D" parent="World/BackDecor"]
+position = Vector2(10472, -20)
+script = ExtResource("s_tree")
+trunk_width = 160.0
+tree_height = 1613.0
+
+[node name="T7" type="Node2D" parent="World/BackDecor"]
+position = Vector2(11098, -20)
+script = ExtResource("s_tree")
+trunk_width = 152.0
+tree_height = 1597.0
+
+[node name="T8" type="Node2D" parent="World/BackDecor"]
+position = Vector2(12309, -20)
+script = ExtResource("s_tree")
+trunk_width = 187.0
+tree_height = 1590.0
+
+[node name="Ruin0" type="Node2D" parent="World/BackDecor"]
+position = Vector2(1450, -30)
+script = ExtResource("s_ruin")
+seed_value = 5366
+
+[node name="Ruin1" type="Node2D" parent="World/BackDecor"]
+position = Vector2(6550, -70)
+script = ExtResource("s_ruin")
+seed_value = 8331
+
+[node name="Ruin2" type="Node2D" parent="World/BackDecor"]
+position = Vector2(11000, -30)
+script = ExtResource("s_ruin")
+seed_value = 4170
+
+[node name="Terrain" type="Node2D" parent="World"]
+
+[node name="Ground0" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain")
 collision_layer = 1
+seed_value = 7735
+vines = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WallLeft"]
-shape = SubResource("WallShape")
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/Ground0"]
+polygon = PackedVector2Array(-700, -71.3, -610, -46.6, -520, -26.7, -430, -18.3, -340, -17.6, -250, 7.2, -160, 7.8, -70, 18.4, 20, 3.9, 110, -5.1, 200, -10.9, 290, -10.1, 380, -16.8, 470, -26.5, 560, -51.4, 650, -60.2, 740, -75.4, 830, -103.2, 920, -100.6, 1010, -113.0, 1100, -115.9, 1190, -132.2, 1280, -130.5, 1370, -131.8, 1460, -137.1, 1550, -113.1, 1640, -93.4, 1730, -104.9, 1820, -87.0, 1910, -59.5, 2000, -53.5, 2090, -47.1, 2180, -32.9, 2270, -15.0, 2360, -1.1, 2450, 7.7, 2540, 22.2, 2630, 6.3, 2720, 4.4, 2810, -7.9, 2900, -20.1, 2990, -17.5, 3080, -20.7, 3170, -45.9, 3260, -71.8, 3350, -67.5, 3440, -102.4, 3530, -110.9, 3600, 1000, -700, 1000)
 
-[node name="WallRight" type="StaticBody2D" parent="World"]
-position = Vector2(1865, -1100)
+[node name="Ground1" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain")
 collision_layer = 1
+seed_value = 5640
+vines = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WallRight"]
-shape = SubResource("WallShape")
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/Ground1"]
+polygon = PackedVector2Array(4500, -98.2, 4590, -93.8, 4680, -78.2, 4770, -70.4, 4860, -58.0, 4950, -29.7, 5040, -31.1, 5130, -18.2, 5220, -23.3, 5310, -21.3, 5400, -31.9, 5490, -50.1, 5580, -75.6, 5670, -65.9, 5760, -94.8, 5850, -96.7, 5940, -133.7, 6030, -136.8, 6120, -153.6, 6210, -167.8, 6300, -162.0, 6390, -179.5, 6480, -171.0, 6570, -176.2, 6660, -161.0, 6750, -160.4, 6840, -134.3, 6930, -137.0, 7020, -121.8, 7110, -92.6, 7200, -91.3, 7290, -77.9, 7380, -55.3, 7470, -56.1, 7560, -35.0, 7650, -43.7, 7740, -18.9, 7830, -18.2, 7920, -19.8, 8010, -50.7, 8100, -41.1, 8190, -71.8, 8280, -62.8, 8370, -77.2, 8460, -112.8, 8550, -113.2, 8600, 1000, 4500, 1000)
 
-[node name="Platforms" type="Node2D" parent="World"]
-
-[node name="Platform0" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(-800, -330)
+[node name="Ground2" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain")
 collision_layer = 1
+seed_value = 4805
+vines = true
 
-[node name="Face" type="TextureRect" parent="World/Platforms/Platform0"]
-texture_filter = 1
-modulate = Color(0.3, 0.38, 0.5, 1)
-offset_left = -125.0
-offset_top = -16.0
-offset_right = 125.0
-offset_bottom = 16.0
-texture = ExtResource("12_top")
-stretch_mode = 1
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/Ground2"]
+polygon = PackedVector2Array(9400, -52.1, 9490, -52.0, 9580, -23.6, 9670, -30.8, 9760, -13.8, 9850, -10.3, 9940, 3.8, 10030, -1.0, 10120, 4.7, 10210, -6.6, 10300, -14.8, 10390, -12.3, 10480, -24.8, 10570, -46.1, 10660, -56.7, 10750, -56.1, 10840, -66.1, 10930, -94.2, 11020, -99.1, 11110, -106.9, 11200, -110.1, 11290, -129.9, 11380, -140.9, 11470, -120.3, 11560, -116.9, 11650, -106.0, 11740, -109.2, 11830, -90.7, 11920, -68.1, 12010, -65.9, 12100, -57.2, 12190, -43.7, 12280, -19.7, 12370, -23.5, 12460, 1.2, 12550, -4.6, 12600, 1000, 9400, 1000)
 
-[node name="Edge" type="ColorRect" parent="World/Platforms/Platform0"]
-offset_left = -125.0
-offset_top = -18.0
-offset_right = 125.0
-offset_bottom = -14.0
-color = Color(0.4, 0.88, 1, 0.5)
+[node name="Flora" type="Node2D" parent="World"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform0"]
-shape = SubResource("PS0")
+[node name="Glow0" type="Area2D" parent="World/Flora"]
+position = Vector2(-440, -120)
+script = ExtResource("s_glow")
+seed_value = 3354
+stalk_height = 136.0
+bulbs = 3
 
-[node name="Platform1" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(-267, -500)
-collision_layer = 1
+[node name="Glow1" type="Area2D" parent="World/Flora"]
+position = Vector2(-48, -120)
+script = ExtResource("s_glow")
+seed_value = 244
+stalk_height = 167.0
+bulbs = 3
 
-[node name="Face" type="TextureRect" parent="World/Platforms/Platform1"]
-texture_filter = 1
-modulate = Color(0.3, 0.38, 0.5, 1)
-offset_left = -115.0
-offset_top = -16.0
-offset_right = 115.0
-offset_bottom = 16.0
-texture = ExtResource("12_top")
-stretch_mode = 1
+[node name="Glow2" type="Area2D" parent="World/Flora"]
+position = Vector2(250, -120)
+script = ExtResource("s_glow")
+seed_value = 60
+stalk_height = 99.0
+bulbs = 3
 
-[node name="Edge" type="ColorRect" parent="World/Platforms/Platform1"]
-offset_left = -115.0
-offset_top = -18.0
-offset_right = 115.0
-offset_bottom = -14.0
-color = Color(0.4, 0.88, 1, 0.5)
+[node name="Glow3" type="Area2D" parent="World/Flora"]
+position = Vector2(1255, -120)
+script = ExtResource("s_glow")
+seed_value = 4472
+stalk_height = 89.0
+bulbs = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform1"]
-shape = SubResource("PS1")
+[node name="Glow4" type="Area2D" parent="World/Flora"]
+position = Vector2(1538, -120)
+script = ExtResource("s_glow")
+seed_value = 5649
+stalk_height = 153.0
+bulbs = 4
 
-[node name="Platform2" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(266, -500)
-collision_layer = 1
+[node name="Glow5" type="Area2D" parent="World/Flora"]
+position = Vector2(1829, -120)
+script = ExtResource("s_glow")
+seed_value = 7666
+stalk_height = 137.0
+bulbs = 4
 
-[node name="Face" type="TextureRect" parent="World/Platforms/Platform2"]
-texture_filter = 1
-modulate = Color(0.3, 0.38, 0.5, 1)
-offset_left = -115.0
-offset_top = -16.0
-offset_right = 115.0
-offset_bottom = 16.0
-texture = ExtResource("12_top")
-stretch_mode = 1
+[node name="Glow6" type="Area2D" parent="World/Flora"]
+position = Vector2(2844, -120)
+script = ExtResource("s_glow")
+seed_value = 5086
+stalk_height = 81.0
+bulbs = 2
 
-[node name="Edge" type="ColorRect" parent="World/Platforms/Platform2"]
-offset_left = -115.0
-offset_top = -18.0
-offset_right = 115.0
-offset_bottom = -14.0
-color = Color(0.4, 0.88, 1, 0.5)
+[node name="Glow7" type="Area2D" parent="World/Flora"]
+position = Vector2(4760, -160)
+script = ExtResource("s_glow")
+seed_value = 4786
+stalk_height = 125.0
+bulbs = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform2"]
-shape = SubResource("PS2")
+[node name="Glow8" type="Area2D" parent="World/Flora"]
+position = Vector2(5862, -160)
+script = ExtResource("s_glow")
+seed_value = 536
+stalk_height = 100.0
+bulbs = 2
 
-[node name="Platform3" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(800, -330)
-collision_layer = 1
+[node name="Glow9" type="Area2D" parent="World/Flora"]
+position = Vector2(6854, -160)
+script = ExtResource("s_glow")
+seed_value = 5755
+stalk_height = 163.0
+bulbs = 2
 
-[node name="Face" type="TextureRect" parent="World/Platforms/Platform3"]
-texture_filter = 1
-modulate = Color(0.3, 0.38, 0.5, 1)
-offset_left = -125.0
-offset_top = -16.0
-offset_right = 125.0
-offset_bottom = 16.0
-texture = ExtResource("12_top")
-stretch_mode = 1
+[node name="Glow10" type="Area2D" parent="World/Flora"]
+position = Vector2(7234, -160)
+script = ExtResource("s_glow")
+seed_value = 7350
+stalk_height = 126.0
+bulbs = 4
 
-[node name="Edge" type="ColorRect" parent="World/Platforms/Platform3"]
-offset_left = -125.0
-offset_top = -18.0
-offset_right = 125.0
-offset_bottom = -14.0
-color = Color(0.4, 0.88, 1, 0.5)
+[node name="Glow11" type="Area2D" parent="World/Flora"]
+position = Vector2(8049, -160)
+script = ExtResource("s_glow")
+seed_value = 4040
+stalk_height = 128.0
+bulbs = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform3"]
-shape = SubResource("PS3")
+[node name="Glow12" type="Area2D" parent="World/Flora"]
+position = Vector2(8364, -160)
+script = ExtResource("s_glow")
+seed_value = 4236
+stalk_height = 130.0
+bulbs = 3
+
+[node name="Glow13" type="Area2D" parent="World/Flora"]
+position = Vector2(9660, -120)
+script = ExtResource("s_glow")
+seed_value = 5355
+stalk_height = 127.0
+bulbs = 4
+
+[node name="Glow14" type="Area2D" parent="World/Flora"]
+position = Vector2(10076, -120)
+script = ExtResource("s_glow")
+seed_value = 6503
+stalk_height = 138.0
+bulbs = 4
+
+[node name="Glow15" type="Area2D" parent="World/Flora"]
+position = Vector2(11464, -120)
+script = ExtResource("s_glow")
+seed_value = 752
+stalk_height = 133.0
+bulbs = 4
+
+[node name="Shroom0" type="Area2D" parent="World/Flora"]
+position = Vector2(3480, -90)
+script = ExtResource("s_shroom")
+
+[node name="Fall0" type="Node2D" parent="World/Flora"]
+position = Vector2(4050, -760)
+script = ExtResource("s_fall")
+
+[node name="Shroom1" type="Area2D" parent="World/Flora"]
+position = Vector2(8480, -130)
+script = ExtResource("s_shroom")
+
+[node name="Fall1" type="Node2D" parent="World/Flora"]
+position = Vector2(9000, -800)
+script = ExtResource("s_fall")
 
 [node name="Pickups" type="Node2D" parent="World"]
 
-[node name="Coin0" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-800, -392)
+[node name="C0" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(-440, -190)
 
-[node name="Coin1" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-267, -562)
+[node name="C1" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(250, -190)
 
-[node name="Coin2" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(266, -562)
+[node name="C2" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(838, -190)
 
-[node name="Coin3" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(800, -392)
+[node name="C3" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1538, -190)
 
-[node name="Coin4" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-500, -140)
+[node name="C4" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1829, -190)
 
-[node name="Coin5" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(200, -140)
+[node name="E5" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(2221, -210)
 
-[node name="Coin6" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(900, -140)
+[node name="C6" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(2844, -190)
 
-[node name="Secret0" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-307, -650)
+[node name="C7" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(4760, -230)
 
-[node name="Secret1" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-267, -650)
+[node name="C8" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5141, -230)
 
-[node name="Secret2" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-227, -650)
+[node name="E9" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(6232, -250)
 
-[node name="Cell0" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(-267, -568)
+[node name="C10" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(7633, -230)
 
-[node name="Cell1" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(266, -568)
+[node name="C11" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(9660, -190)
+
+[node name="C12" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(10076, -190)
+
+[node name="C13" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(11464, -190)
+
+[node name="C14" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(12074, -190)
+
+[node name="Checkpoints" type="Node2D" parent="World"]
+
+[node name="Lantern0" type="Area2D" parent="World/Checkpoints"]
+position = Vector2(-380, -60)
+script = ExtResource("s_check")
+
+[node name="Lantern1" type="Area2D" parent="World/Checkpoints"]
+position = Vector2(4820, -100)
+script = ExtResource("s_check")
+
+[node name="Lantern2" type="Area2D" parent="World/Checkpoints"]
+position = Vector2(9720, -60)
+script = ExtResource("s_check")
+
+[node name="KillZones" type="Node2D" parent="World"]
+
+[node name="Chasm0" type="Area2D" parent="World/KillZones"]
+position = Vector2(4050, 520)
+script = ExtResource("s_kill")
+
+[node name="Shape" type="CollisionShape2D" parent="World/KillZones/Chasm0"]
+shape = SubResource("chasm")
+
+[node name="Chasm1" type="Area2D" parent="World/KillZones"]
+position = Vector2(9000, 520)
+script = ExtResource("s_kill")
+
+[node name="Shape" type="CollisionShape2D" parent="World/KillZones/Chasm1"]
+shape = SubResource("chasm")
 
 [node name="Enemies" type="Node2D" parent="World"]
 
 [node name="Enemy0" parent="World/Enemies" instance=ExtResource("3_enemy")]
-position = Vector2(1150, -300)
+position = Vector2(2400, -300)
+health = 2
+body_scale = 0.8
+shoot_interval = 2.5
+detection_range = 950.0
+stopping_distance = 440.0
+
+[node name="Enemy1" parent="World/Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(10600, -320)
 is_boss = true
 immune_to_melee = true
-health = 8
-body_scale = 1.5
+health = 10
+body_scale = 1.6
 tint = Color(1, 0.62, 0.66, 1)
-shoot_interval = 1.5
+shoot_interval = 1.35
 detection_range = 1300.0
 stopping_distance = 520.0
 
-[node name="Tablet" parent="World" instance=ExtResource("9_tab")]
-position = Vector2(-1250, -130)
-id = "t3"
-text = "Plating turns the blade.\nOnly what it throws will open it."
-
-[node name="Shrine" parent="World" instance=ExtResource("10_shr")]
-position = Vector2(266, -110)
-
 [node name="Portal" parent="World" instance=ExtResource("7_portal")]
-position = Vector2(1700, -140)
+position = Vector2(12340, -130)
 
 [node name="Player" parent="World" instance=ExtResource("2_player")]
-position = Vector2(-1500, -200)
-camera_limit_left = -1825
-camera_limit_right = 1825
-camera_limit_bottom = 286
+position = Vector2(-440, -200)
+camera_limit_left = -760
+camera_limit_top = -1500
+camera_limit_right = 12660
+camera_limit_bottom = 400
+
+[node name="Foreground" type="Node2D" parent="World"]
+script = ExtResource("s_fg")
+z_index = 50
+
+[node name="F0" type="Node2D" parent="World/Foreground"]
+position = Vector2(1255, 60)
+script = ExtResource("s_tree")
+trunk_width = 264.0
+tree_height = 1792.0
+
+[node name="F1" type="Node2D" parent="World/Foreground"]
+position = Vector2(1538, 60)
+script = ExtResource("s_tree")
+trunk_width = 284.0
+tree_height = 1961.0
+
+[node name="F2" type="Node2D" parent="World/Foreground"]
+position = Vector2(3138, 60)
+script = ExtResource("s_tree")
+trunk_width = 204.0
+tree_height = 1503.0
+
+[node name="F3" type="Node2D" parent="World/Foreground"]
+position = Vector2(7234, 20)
+script = ExtResource("s_tree")
+trunk_width = 187.0
+tree_height = 1784.0
+
+[node name="F4" type="Node2D" parent="World/Foreground"]
+position = Vector2(11098, 60)
+script = ExtResource("s_tree")
+trunk_width = 299.0
+tree_height = 1742.0
+
+[node name="F5" type="Node2D" parent="World/Foreground"]
+position = Vector2(12309, 60)
+script = ExtResource("s_tree")
+trunk_width = 252.0
+tree_height = 1460.0
+
+[node name="Atmosphere" type="Node2D" parent="."]
+script = ExtResource("s_atmo")
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.6, 0.7, 0.86, 1)
 
 [node name="UI" parent="." instance=ExtResource("4_ui")]

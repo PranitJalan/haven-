@@ -1,7 +1,7 @@
 extends Control
 
 const TEXT := """— Code —
-Swastik  ·  Pranit
+Swastik  ·  Pranit  ·  Avijnat
 
 — Art —
 

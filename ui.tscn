@@ -1,59 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8hqvxw2ng7ra"]
+[gd_scene load_steps=2 format=3 uid="uid://b8hqvxw2ng7ra"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_ui"]
-[ext_resource type="Script" path="res://health_bar.gd" id="2_bar"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_ui")
 
-[node name="HealthBar" type="Control" parent="."]
+[node name="Health" type="HBoxContainer" parent="."]
 offset_left = 28.0
-offset_top = 24.0
-offset_right = 320.0
-offset_bottom = 60.0
-script = ExtResource("2_bar")
+offset_top = 26.0
+offset_right = 400.0
+offset_bottom = 52.0
+theme_override_constants/separation = 9
 
 [node name="Coins" type="Label" parent="."]
 offset_left = 28.0
-offset_top = 66.0
+offset_top = 64.0
 offset_right = 320.0
 offset_bottom = 94.0
 modulate = Color(1, 0.84, 0.36, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 text = "0 / 0"
 
-[node name="LevelTitle" type="Label" parent="."]
-offset_left = 28.0
-offset_top = 94.0
-offset_right = 440.0
-offset_bottom = 118.0
-modulate = Color(0.72, 0.82, 0.9, 1)
-theme_override_font_sizes/font_size = 17
-text = "Level 1"
-
-[node name="StoryCard" type="Label" parent="."]
-anchor_right = 1.0
-offset_top = 150.0
-offset_bottom = 260.0
-grow_horizontal = 2
-modulate = Color(0.88, 0.94, 1, 1)
-theme_override_font_sizes/font_size = 21
-text = ""
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Banner" type="Label" parent="."]
-anchor_right = 1.0
-offset_top = 290.0
-offset_bottom = 330.0
-grow_horizontal = 2
-modulate = Color(0.55, 0.93, 1, 1)
-theme_override_font_sizes/font_size = 26
-text = ""
-horizontal_alignment = 1
-
 [node name="EndScreen" type="Control" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -61,44 +31,38 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Dim" type="ColorRect" parent="EndScreen"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.03, 0.04, 0.06, 0.85)
+color = Color(0.03, 0.04, 0.06, 0.82)
 
 [node name="Center" type="VBoxContainer" parent="EndScreen"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 90.0
-offset_right = -90.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 18
 alignment = 1
 
 [node name="Title" type="Label" parent="EndScreen/Center"]
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 68
 text = "You Lost"
 horizontal_alignment = 1
 
-[node name="Body" type="Label" parent="EndScreen/Center"]
-modulate = Color(0.78, 0.85, 0.9, 1)
-theme_override_font_sizes/font_size = 16
-text = ""
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="ActionButton" type="Button" parent="EndScreen/Center"]
-custom_minimum_size = Vector2(250, 54)
+[node name="RestartButton" type="Button" parent="EndScreen/Center"]
+custom_minimum_size = Vector2(230, 56)
+layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 22
-text = "Retry"
+theme_override_font_sizes/font_size = 24
+text = "Restart"
 
 [node name="Hint" type="Label" parent="EndScreen/Center"]
 modulate = Color(0.55, 0.6, 0.66, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "or press R"
 horizontal_alignment = 1

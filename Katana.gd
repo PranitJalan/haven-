@@ -8,15 +8,12 @@ const SWEEP := PI / 1.7
 @export var cooldown := 0.42
 
 @onready var player: Player = get_parent()
-@onready var blade: Sprite2D = $Blade
 
 var _swing_remaining := 0.0
 var _cooldown_remaining := 0.0
 
 
 func _ready() -> void:
-	damage += Game.katana_bonus_damage()
-	cooldown *= Game.katana_cooldown_scale()
 	monitoring = false
 	area_entered.connect(_on_area_entered)
 	body_entered.connect(_on_body_entered)
@@ -24,7 +21,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	rotation = 0.0 if player.facing_direction > 0.0 else PI
-	_update_blade()
 
 	_cooldown_remaining = maxf(_cooldown_remaining - delta, 0.0)
 
@@ -55,17 +51,6 @@ func _start_swing() -> void:
 
 func _swing_progress() -> float:
 	return 1.0 - (_swing_remaining / swing_time)
-
-
-func _update_blade() -> void:
-	if _swing_remaining <= 0.0:
-		blade.visible = false
-		return
-
-	var t := _swing_progress()
-	blade.visible = true
-	blade.rotation = lerpf(-SWEEP * 0.55, SWEEP * 0.45, t)
-	blade.modulate.a = clampf(1.3 - t, 0.0, 1.0)
 
 
 # A crescent that sweeps down through the arc and fades as it goes.
@@ -107,5 +92,5 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and body.has_method("take_damage"):
-		body.call("take_damage", damage, true)
+		body.call("take_damage", damage)
 		player.shake_camera(7.0)

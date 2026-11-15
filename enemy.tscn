@@ -1,7 +1,6 @@
 [gd_scene load_steps=43 format=3 uid="uid://2oqfqxx5b61g"]
 
 [ext_resource type="Script" uid="uid://cd2dj742ybtwn" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Script" path="res://enemy_health_bar.gd" id="4_bar"]
 [ext_resource type="Texture2D" path="res://Robot-Character/Idle_000.png" id="idle_0"]
 [ext_resource type="Texture2D" path="res://Robot-Character/Idle_001.png" id="idle_1"]
 [ext_resource type="Texture2D" path="res://Robot-Character/Idle_002.png" id="idle_2"]
@@ -204,6 +203,3 @@ offset = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_454dt")
 
 [node name="ShootTimer" type="Timer" parent="."]
-
-[node name="HealthBar" type="Node2D" parent="."]
-script = ExtResource("4_bar")

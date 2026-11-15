@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8hqvxw2ng7ra"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_ui"]
-[ext_resource type="Script" path="res://heart_bar.gd" id="2_hearts"]
+[ext_resource type="Script" path="res://health_bar.gd" id="2_bar"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_ui")
 
-[node name="Hearts" type="Control" parent="."]
+[node name="HealthBar" type="Control" parent="."]
 offset_left = 28.0
 offset_top = 24.0
 offset_right = 320.0
 offset_bottom = 60.0
-script = ExtResource("2_hearts")
+script = ExtResource("2_bar")
 
 [node name="Coins" type="Label" parent="."]
 offset_left = 28.0

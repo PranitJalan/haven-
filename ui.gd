@@ -6,7 +6,7 @@ const LOSE_COLOR := Color(0.95, 0.35, 0.4)
 signal restart_requested
 signal menu_requested
 
-@onready var hearts: Control = $Hearts
+@onready var health_bar: Control = $HealthBar
 @onready var coins: Label = $Coins
 @onready var level_label: Label = $LevelTitle
 @onready var story_card: Label = $StoryCard
@@ -44,11 +44,11 @@ func set_level_title(text: String) -> void:
 
 
 func build_health(max_health: int) -> void:
-	hearts.setup(max_health)
+	health_bar.setup(max_health)
 
 
 func set_health(current: int) -> void:
-	hearts.set_health(current)
+	health_bar.set_health(current)
 
 
 func set_coins(collected: int, total: int) -> void:

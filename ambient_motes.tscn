@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://Particles/glow.png" id="1_glow"]
+
+[sub_resource type="Gradient" id="Gradient_motes"]
+offsets = PackedFloat32Array(0, 0.3, 0.75, 1)
+colors = PackedColorArray(0.6, 0.95, 1, 0, 0.65, 0.96, 1, 0.5, 0.65, 0.96, 1, 0.35, 0.6, 0.95, 1, 0)
+
+[node name="AmbientMotes" type="CPUParticles2D"]
+amount = 70
+lifetime = 7.0
+preprocess = 4.0
+randomness = 0.6
+texture = ExtResource("1_glow")
+emission_shape = 3
+emission_rect_extents = Vector2(1800, 420)
+direction = Vector2(0.3, -1)
+spread = 35.0
+gravity = Vector2(4, -9)
+initial_velocity_min = 6.0
+initial_velocity_max = 26.0
+scale_amount_min = 0.012
+scale_amount_max = 0.05
+color_ramp = SubResource("Gradient_motes")

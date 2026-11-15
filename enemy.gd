@@ -31,12 +31,15 @@ signal died
 
 var direction := 0.0
 var is_dead := false
+var max_health := 0
 
 # True while a one-shot animation (attack, damage, death) owns the sprite.
 var _busy := false
 
 
 func _ready() -> void:
+	max_health = health
+
 	if not is_equal_approx(body_scale, 1.0):
 		sprite.scale *= body_scale
 		collision_shape.scale *= body_scale

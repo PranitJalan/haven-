@@ -1,0 +1,431 @@
+[gd_scene load_steps=29 format=3]
+
+[ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
+[ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
+[ext_resource type="Texture2D" uid="uid://c543q50co1yd4" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/08_Forest.png" id="bg_Forest08"]
+[ext_resource type="Texture2D" uid="uid://bt2jkkak0ksga" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/07_Forest.png" id="bg_Forest07"]
+[ext_resource type="Texture2D" uid="uid://caigb8kr3a2fy" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/06_Forest.png" id="bg_Forest06"]
+[ext_resource type="Texture2D" uid="uid://d1jldl171r1vm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/05_Particles.png" id="bg_Motes"]
+[ext_resource type="Texture2D" uid="uid://gtvtpxyjptta" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/04_Forest.png" id="bg_Forest04"]
+[ext_resource type="Texture2D" uid="uid://daunrkn3trg88" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/03_Particles.png" id="bg_Dust"]
+[ext_resource type="Texture2D" uid="uid://wlujffyam4eh" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/02_Bushes.png" id="bg_Bushes"]
+[ext_resource type="Texture2D" uid="uid://56sj4ve07ou1" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/01_Mist.png" id="bg_Mist"]
+[ext_resource type="Script" path="res://level.gd" id="1_level"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
+[ext_resource type="PackedScene" path="res://coin.tscn" id="5_coin"]
+[ext_resource type="PackedScene" path="res://energy_cell.tscn" id="6_cell"]
+[ext_resource type="PackedScene" path="res://portal.tscn" id="7_portal"]
+[ext_resource type="PackedScene" path="res://tablet.tscn" id="9_tab"]
+[ext_resource type="PackedScene" path="res://shrine.tscn" id="10_shr"]
+[ext_resource type="PackedScene" path="res://ambient_motes.tscn" id="11_motes"]
+[ext_resource type="Texture2D" path="res://Tiles/ground_top.png" id="12_top"]
+[ext_resource type="Texture2D" path="res://Tiles/ground_fill.png" id="13_fill"]
+
+[sub_resource type="RectangleShape2D" id="GroundShape"]
+size = Vector2(3648, 120)
+
+[sub_resource type="RectangleShape2D" id="PS0"]
+size = Vector2(250, 32)
+
+[sub_resource type="RectangleShape2D" id="PS1"]
+size = Vector2(230, 32)
+
+[sub_resource type="RectangleShape2D" id="PS2"]
+size = Vector2(230, 32)
+
+[sub_resource type="RectangleShape2D" id="PS3"]
+size = Vector2(250, 32)
+
+[sub_resource type="RectangleShape2D" id="PS4"]
+size = Vector2(260, 32)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_level")
+level_title = "Level 9  ·  The Engine"
+level_number = 9
+is_boss_level = true
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sky" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Sky")
+centered = false
+
+[node name="Forest09" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest09"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest09")
+centered = false
+
+[node name="Forest08" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest08"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest08")
+centered = false
+
+[node name="Forest07" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest07"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest07")
+centered = false
+
+[node name="Forest06" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest06"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest06")
+centered = false
+
+[node name="Motes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.58, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(7.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Motes"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Motes")
+centered = false
+
+[node name="Forest04" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.66, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest04"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest04")
+centered = false
+
+[node name="Dust" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.74, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(-11.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Dust"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Dust")
+centered = false
+
+[node name="Bushes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.84, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Bushes"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Bushes")
+centered = false
+
+[node name="Mist" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.92, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(-18.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Mist"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Mist")
+centered = false
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="World"]
+collision_layer = 1
+
+[node name="Fill" type="TextureRect" parent="World/Ground"]
+texture_filter = 1
+modulate = Color(0.17, 0.22, 0.3, 1)
+offset_left = -1825.0
+offset_top = -4.0
+offset_right = 1825.0
+offset_bottom = 600.0
+texture = ExtResource("13_fill")
+stretch_mode = 1
+
+[node name="Top" type="TextureRect" parent="World/Ground"]
+texture_filter = 1
+modulate = Color(0.26, 0.33, 0.44, 1)
+offset_left = -1825.0
+offset_top = -72.5
+offset_right = 1825.0
+offset_bottom = -2.5
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Ground"]
+offset_left = -1825.0
+offset_top = -74.0
+offset_right = 1825.0
+offset_bottom = -70.0
+color = Color(0.4, 0.88, 1, 0.35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground"]
+position = Vector2(0, -10)
+shape = SubResource("GroundShape")
+
+[node name="Motes" parent="World" instance=ExtResource("11_motes")]
+position = Vector2(0, -330)
+
+[node name="Platforms" type="Node2D" parent="World"]
+
+[node name="Platform0" type="StaticBody2D" parent="World/Platforms"]
+position = Vector2(-900, -350)
+collision_layer = 1
+
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform0"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -125.0
+offset_top = -16.0
+offset_right = 125.0
+offset_bottom = 16.0
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform0"]
+offset_left = -125.0
+offset_top = -18.0
+offset_right = 125.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform0"]
+shape = SubResource("PS0")
+
+[node name="Platform1" type="StaticBody2D" parent="World/Platforms"]
+position = Vector2(-300, -560)
+collision_layer = 1
+
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform1"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -115.0
+offset_top = -16.0
+offset_right = 115.0
+offset_bottom = 16.0
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform1"]
+offset_left = -115.0
+offset_top = -18.0
+offset_right = 115.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform1"]
+shape = SubResource("PS1")
+
+[node name="Platform2" type="StaticBody2D" parent="World/Platforms"]
+position = Vector2(300, -560)
+collision_layer = 1
+
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform2"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -115.0
+offset_top = -16.0
+offset_right = 115.0
+offset_bottom = 16.0
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform2"]
+offset_left = -115.0
+offset_top = -18.0
+offset_right = 115.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform2"]
+shape = SubResource("PS2")
+
+[node name="Platform3" type="StaticBody2D" parent="World/Platforms"]
+position = Vector2(900, -350)
+collision_layer = 1
+
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform3"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -125.0
+offset_top = -16.0
+offset_right = 125.0
+offset_bottom = 16.0
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform3"]
+offset_left = -125.0
+offset_top = -18.0
+offset_right = 125.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform3"]
+shape = SubResource("PS3")
+
+[node name="Platform4" type="StaticBody2D" parent="World/Platforms"]
+position = Vector2(0, -700)
+collision_layer = 1
+
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform4"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -130.0
+offset_top = -16.0
+offset_right = 130.0
+offset_bottom = 16.0
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform4"]
+offset_left = -130.0
+offset_top = -18.0
+offset_right = 130.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform4"]
+shape = SubResource("PS4")
+
+[node name="Pickups" type="Node2D" parent="World"]
+
+[node name="Coin0" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(-900, -412)
+
+[node name="Coin1" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(-300, -622)
+
+[node name="Coin2" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(300, -622)
+
+[node name="Coin3" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(900, -412)
+
+[node name="Coin4" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(0, -762)
+
+[node name="Coin5" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(-500, -140)
+
+[node name="Coin6" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(200, -140)
+
+[node name="Coin7" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(900, -140)
+
+[node name="Secret0" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(-40, -850)
+
+[node name="Secret1" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(0, -850)
+
+[node name="Secret2" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(40, -850)
+
+[node name="Cell0" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(-300, -628)
+
+[node name="Cell1" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(900, -418)
+
+[node name="Enemies" type="Node2D" parent="World"]
+
+[node name="Enemy0" parent="World/Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(1150, -300)
+is_boss = true
+immune_to_melee = true
+health = 16
+body_scale = 2.1
+tint = Color(1, 0.62, 0.66, 1)
+shoot_interval = 0.95
+detection_range = 1300.0
+stopping_distance = 520.0
+
+[node name="Enemy1" parent="World/Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(-1050, -300)
+health = 3
+body_scale = 0.8
+shoot_interval = 2.6
+detection_range = 900.0
+stopping_distance = 430.0
+
+[node name="Enemy2" parent="World/Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(550, -300)
+health = 3
+body_scale = 0.8
+shoot_interval = 2.6
+detection_range = 900.0
+stopping_distance = 430.0
+
+[node name="Tablet" parent="World" instance=ExtResource("9_tab")]
+position = Vector2(-1250, -130)
+id = "t9"
+text = "The Engine has thrown pieces of Everroot at the sky for years.\nSend all of them home."
+
+[node name="Shrine" parent="World" instance=ExtResource("10_shr")]
+position = Vector2(300, -110)
+
+[node name="Portal" parent="World" instance=ExtResource("7_portal")]
+position = Vector2(1700, -140)
+
+[node name="Player" parent="World" instance=ExtResource("2_player")]
+position = Vector2(-1500, -200)
+camera_limit_left = -1825
+camera_limit_right = 1825
+camera_limit_bottom = 286
+
+[node name="UI" parent="." instance=ExtResource("4_ui")]

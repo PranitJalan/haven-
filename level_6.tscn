@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=29 format=3]
 
 [ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
 [ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
@@ -11,35 +11,40 @@
 [ext_resource type="Texture2D" uid="uid://wlujffyam4eh" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/02_Bushes.png" id="bg_Bushes"]
 [ext_resource type="Texture2D" uid="uid://56sj4ve07ou1" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/01_Mist.png" id="bg_Mist"]
 [ext_resource type="Script" path="res://level.gd" id="1_level"]
-[ext_resource type="PackedScene" path="res://tablet.tscn" id="9_tab"]
-[ext_resource type="PackedScene" path="res://shrine.tscn" id="10_shr"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_enemy"]
 [ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
 [ext_resource type="PackedScene" path="res://coin.tscn" id="5_coin"]
 [ext_resource type="PackedScene" path="res://energy_cell.tscn" id="6_cell"]
 [ext_resource type="PackedScene" path="res://portal.tscn" id="7_portal"]
+[ext_resource type="PackedScene" path="res://tablet.tscn" id="9_tab"]
+[ext_resource type="PackedScene" path="res://shrine.tscn" id="10_shr"]
+[ext_resource type="PackedScene" path="res://ambient_motes.tscn" id="11_motes"]
+[ext_resource type="Texture2D" path="res://Tiles/ground_top.png" id="12_top"]
+[ext_resource type="Texture2D" path="res://Tiles/ground_fill.png" id="13_fill"]
+[ext_resource type="PackedScene" path="res://level_7.tscn" id="8_next"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(3648, 120)
 
 [sub_resource type="RectangleShape2D" id="PS0"]
-size = Vector2(240, 32)
+size = Vector2(250, 32)
 
 [sub_resource type="RectangleShape2D" id="PS1"]
-size = Vector2(220, 32)
+size = Vector2(230, 32)
 
 [sub_resource type="RectangleShape2D" id="PS2"]
-size = Vector2(220, 32)
+size = Vector2(230, 32)
 
 [sub_resource type="RectangleShape2D" id="PS3"]
-size = Vector2(240, 32)
+size = Vector2(250, 32)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_level")
 level_title = "Level 6  ·  The Harvest Core"
 level_number = 6
 is_boss_level = true
+next_level = ExtResource("8_next")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -179,71 +184,134 @@ centered = false
 [node name="Ground" type="StaticBody2D" parent="World"]
 collision_layer = 1
 
-[node name="ColorRect" type="ColorRect" parent="World/Ground"]
+[node name="Fill" type="TextureRect" parent="World/Ground"]
+texture_filter = 1
+modulate = Color(0.17, 0.22, 0.3, 1)
+offset_left = -1825.0
+offset_top = -4.0
+offset_right = 1825.0
+offset_bottom = 600.0
+texture = ExtResource("13_fill")
+stretch_mode = 1
+
+[node name="Top" type="TextureRect" parent="World/Ground"]
+texture_filter = 1
+modulate = Color(0.26, 0.33, 0.44, 1)
 offset_left = -1825.0
 offset_top = -72.5
 offset_right = 1825.0
-offset_bottom = 600.0
-color = Color(0.07, 0.09, 0.12, 1)
+offset_bottom = -2.5
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Ground"]
+offset_left = -1825.0
+offset_top = -74.0
+offset_right = 1825.0
+offset_bottom = -70.0
+color = Color(0.4, 0.88, 1, 0.35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground"]
 position = Vector2(0, -10)
 shape = SubResource("GroundShape")
 
+[node name="Motes" parent="World" instance=ExtResource("11_motes")]
+position = Vector2(0, -330)
+
 [node name="Platforms" type="Node2D" parent="World"]
 
 [node name="Platform0" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(-800, -360)
+position = Vector2(-870, -340)
 collision_layer = 1
 
-[node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform0"]
-offset_left = -120.0
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform0"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -125.0
 offset_top = -16.0
-offset_right = 120.0
+offset_right = 125.0
 offset_bottom = 16.0
-color = Color(0.1, 0.13, 0.18, 1)
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform0"]
+offset_left = -125.0
+offset_top = -18.0
+offset_right = 125.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform0"]
 shape = SubResource("PS0")
 
 [node name="Platform1" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(-300, -500)
+position = Vector2(-290, -520)
 collision_layer = 1
 
-[node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform1"]
-offset_left = -110.0
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform1"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -115.0
 offset_top = -16.0
-offset_right = 110.0
+offset_right = 115.0
 offset_bottom = 16.0
-color = Color(0.1, 0.13, 0.18, 1)
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform1"]
+offset_left = -115.0
+offset_top = -18.0
+offset_right = 115.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform1"]
 shape = SubResource("PS1")
 
 [node name="Platform2" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(300, -500)
+position = Vector2(290, -520)
 collision_layer = 1
 
-[node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform2"]
-offset_left = -110.0
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform2"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -115.0
 offset_top = -16.0
-offset_right = 110.0
+offset_right = 115.0
 offset_bottom = 16.0
-color = Color(0.1, 0.13, 0.18, 1)
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform2"]
+offset_left = -115.0
+offset_top = -18.0
+offset_right = 115.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform2"]
 shape = SubResource("PS2")
 
 [node name="Platform3" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(800, -360)
+position = Vector2(870, -340)
 collision_layer = 1
 
-[node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform3"]
-offset_left = -120.0
+[node name="Face" type="TextureRect" parent="World/Platforms/Platform3"]
+texture_filter = 1
+modulate = Color(0.3, 0.38, 0.5, 1)
+offset_left = -125.0
 offset_top = -16.0
-offset_right = 120.0
+offset_right = 125.0
 offset_bottom = 16.0
-color = Color(0.1, 0.13, 0.18, 1)
+texture = ExtResource("12_top")
+stretch_mode = 1
+
+[node name="Edge" type="ColorRect" parent="World/Platforms/Platform3"]
+offset_left = -125.0
+offset_top = -18.0
+offset_right = 125.0
+offset_bottom = -14.0
+color = Color(0.4, 0.88, 1, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform3"]
 shape = SubResource("PS3")
@@ -251,46 +319,40 @@ shape = SubResource("PS3")
 [node name="Pickups" type="Node2D" parent="World"]
 
 [node name="Coin0" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-800, -422)
+position = Vector2(-870, -402)
 
 [node name="Coin1" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-300, -562)
+position = Vector2(-290, -582)
 
 [node name="Coin2" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(300, -562)
+position = Vector2(290, -582)
 
 [node name="Coin3" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(800, -422)
+position = Vector2(870, -402)
 
 [node name="Coin4" parent="World/Pickups" instance=ExtResource("5_coin")]
 position = Vector2(-500, -140)
 
 [node name="Coin5" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(0, -140)
+position = Vector2(200, -140)
 
 [node name="Coin6" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(500, -140)
-
-[node name="Cell0" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(-300, -565)
-
-[node name="Cell1" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(300, -565)
-
-[node name="Cell2" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(-50, -140)
-
-[node name="Cell3" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(600, -140)
+position = Vector2(900, -140)
 
 [node name="Secret0" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(300, -575)
+position = Vector2(-330, -670)
 
 [node name="Secret1" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(340, -575)
+position = Vector2(-290, -670)
 
 [node name="Secret2" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(260, -575)
+position = Vector2(-250, -670)
+
+[node name="Cell0" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(-290, -588)
+
+[node name="Cell1" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(290, -588)
 
 [node name="Enemies" type="Node2D" parent="World"]
 
@@ -314,12 +376,12 @@ detection_range = 900.0
 stopping_distance = 430.0
 
 [node name="Tablet" parent="World" instance=ExtResource("9_tab")]
-position = Vector2(-1150, -130)
+position = Vector2(-1250, -130)
 id = "t6"
 text = "It kept everything it took.\nGive all of it back."
 
 [node name="Shrine" parent="World" instance=ExtResource("10_shr")]
-position = Vector2(0, -110)
+position = Vector2(290, -110)
 
 [node name="Portal" parent="World" instance=ExtResource("7_portal")]
 position = Vector2(1700, -140)

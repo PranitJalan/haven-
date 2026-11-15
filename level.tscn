@@ -168,12 +168,8 @@ position = Vector2(1717, -300)
 
 [node name="Player" parent="World" instance=ExtResource("2_player")]
 position = Vector2(-26, -200)
-
-[node name="Camera2D" parent="World/Player" index="2"]
-limit_left = -1825
-limit_right = 1825
-limit_bottom = 60
+camera_limit_left = -1825
+camera_limit_right = 1825
+camera_limit_bottom = 60
 
 [node name="UI" parent="." instance=ExtResource("4_ui")]
-
-[editable path="World/Player"]

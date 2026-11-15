@@ -16,6 +16,11 @@ signal died
 
 @export var max_health := 5
 
+@export var camera_limit_left := -10000000
+@export var camera_limit_top := -10000000
+@export var camera_limit_right := 10000000
+@export var camera_limit_bottom := 10000000
+
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -30,6 +35,10 @@ func _ready() -> void:
 	health = max_health
 
 	_camera_smoothing_enabled = camera_2d.position_smoothing_enabled
+	camera_2d.limit_left = camera_limit_left
+	camera_2d.limit_top = camera_limit_top
+	camera_2d.limit_right = camera_limit_right
+	camera_2d.limit_bottom = camera_limit_bottom
 	camera_2d.top_level = true
 	camera_2d.global_position = global_position
 	camera_2d.reset_smoothing()

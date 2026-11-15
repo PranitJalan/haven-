@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://i7r20qrcc1g1" path="res://Shield.gd" id="3_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
 size = Vector2(118, 114)
 
-[node name="Node2D" type="CharacterBody2D" unique_id=476216898 groups=["player"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s87yt"]
+size = Vector2(118, 59)
+
+[node name="Node2D2" type="CharacterBody2D" unique_id=476216898 groups=["player"]]
 script = ExtResource("1_onrkg")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=7532827]
@@ -20,3 +24,12 @@ shape = SubResource("RectangleShape2D_454dt")
 zoom = Vector2(0.3, 0.3)
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="Shield" type="Area2D" parent="." unique_id=507607914]
+script = ExtResource("3_i3pqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Shield" unique_id=1733561482]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" unique_id=1086619935]
+position = Vector2(153, 0)
+shape = SubResource("RectangleShape2D_s87yt")

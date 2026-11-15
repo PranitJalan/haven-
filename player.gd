@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var acceleration := 200
 @export var friction := 200
 @export var jump_strength := 200
-@export var max_speed := 600
+@export var max_speed := 2000
+@onready var camera_2d: Camera2D = $Camera2D
 
 var direction := 1
 var jump := false
@@ -21,8 +22,17 @@ func get_input():
 
 
 func set_stuff(delta):
+	var current_acceleration
+	if is_on_floor():
+		current_acceleration = acceleration
+		camera_2d.top_level = false
+		camera_2d.position = Vector2.ZERO
+	else:
+		current_acceleration = acceleration*3
+		camera_2d.top_level = true
+		camera_2d.position = position
 	if direction:
-		velocity.x = move_toward(velocity.x, max_speed*direction, acceleration*delta)
+		velocity.x = move_toward(velocity.x, max_speed*direction, current_acceleration*delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction*delta)
 	
@@ -31,3 +41,4 @@ func set_stuff(delta):
 	else:
 		if jump:
 			velocity.y -= jump_strength
+	jump = false

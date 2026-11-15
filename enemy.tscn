@@ -8,6 +8,7 @@ size = Vector2(122, 124)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=470170794]
 script = ExtResource("1_4gyqm")
+range = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1785970370]
 texture = ExtResource("2_qi2p4")

@@ -7,8 +7,9 @@ extends CharacterBody2D
 @export var jump_strength := 200
 @export var max_speed := 600
 @export var range := 200
+@export var distance := 750
 
-var direction := 1
+var direction := 0
 var jump := false
 
 func _physics_process(delta: float) -> void:

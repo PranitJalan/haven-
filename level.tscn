@@ -1,30 +1,25 @@
 [gd_scene format=3 uid="uid://bffs0yqr2jdrx"]
 
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_vonw3"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_oi3di"]
-[ext_resource type="Texture2D" uid="uid://car0pc8dg74fx" path="res://Parallax Forest Background (Seamless)/Combined Background Images/Combined background - Blue.png" id="3_oi3di"]
+[ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_oi3di"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
-size = Vector2(3648, 124)
+size = Vector2(3648, 120)
 
 [node name="Node2D" type="Node2D" unique_id=1693261953]
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1220412401]
-repeat_size = Vector2(2073, 0)
-repeat_times = 7
-
-[node name="CombinedBackgroundBlue" type="Sprite2D" parent="Parallax2D" unique_id=344723606]
-position = Vector2(-783, -454.99997)
-scale = Vector2(1.0807291, 0.72407407)
-texture = ExtResource("3_oi3di")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1737795387]
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=580692626]
-scale = Vector2(28.546875, 1)
-texture = ExtResource("1_vonw3")
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1681991673]
+custom_minimum_size = Vector2(3650, 0)
+offset_left = -1825.0
+offset_top = -72.5
+offset_right = 1825.0
+offset_bottom = 52.5
+color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1305504874]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_454dt")
 
 [node name="Node2D" parent="." unique_id=476216898 instance=ExtResource("2_oi3di")]
@@ -32,5 +27,12 @@ position = Vector2(-26, -625)
 
 [node name="Camera2D" parent="Node2D" index="2" unique_id=1412978775]
 limit_bottom = -50
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=161967842]
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D2" unique_id=109798689]
+
+[node name="CharacterBody2D" parent="Node2D2" unique_id=470170794 instance=ExtResource("3_oi3di")]
+position = Vector2(1717, -300)
 
 [editable path="Node2D"]

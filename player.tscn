@@ -6,9 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
 size = Vector2(118, 114)
 
-[node name="Node2D" type="CharacterBody2D" unique_id=476216898]
+[node name="Node2D" type="CharacterBody2D" unique_id=476216898 groups=["player"]]
 script = ExtResource("1_onrkg")
 gravity = 200
+jump_strength = 3000
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=7532827]
 position = Vector2(0, 1)
@@ -18,3 +19,5 @@ texture = ExtResource("2_i3pqv")
 shape = SubResource("RectangleShape2D_454dt")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1412978775]
+zoom = Vector2(0.3, 0.3)
+position_smoothing_enabled = true

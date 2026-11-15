@@ -9,7 +9,7 @@ signal died
 @export var max_speed := 600.0
 
 @export var detection_range := 1000.0
-@export var stopping_distance := 750.0
+@export var stopping_distance := 500.0
 @export var shoot_range := 1200.0
 
 @export var health := 5

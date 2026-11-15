@@ -11,7 +11,6 @@ signal restart_requested
 @onready var pips: HBoxContainer = $Health
 @onready var end_screen: Control = $EndScreen
 @onready var title: Label = $EndScreen/Center/Title
-@onready var subtitle: Label = $EndScreen/Center/Subtitle
 @onready var restart_button: Button = $EndScreen/Center/RestartButton
 
 
@@ -46,13 +45,7 @@ func set_health(current: int) -> void:
 
 
 func show_result(won: bool) -> void:
-	title.text = "HAVEN HELD" if won else "YOU FELL"
+	title.text = "You Win" if won else "You Lost"
 	title.modulate = WIN_COLOR if won else LOSE_COLOR
-	subtitle.text = (
-		"You sent every rocket home."
-		if won
-		else "The haven belongs to the machine."
-	)
-
 	end_screen.show()
 	restart_button.grab_focus()

@@ -1,5 +1,6 @@
-
 extends CharacterBody2D
+
+const RUN_ANIMATION_THRESHOLD := 20.0
 
 @export var gravity := 2400.0
 @export var acceleration := 3000.0
@@ -12,8 +13,10 @@ extends CharacterBody2D
 @export var health := 5
 
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var facing_direction := 1.0
+var is_dead := false
 var _camera_frozen := false
 var _camera_smoothing_enabled := true
 
@@ -30,11 +33,16 @@ func _physics_process(delta: float) -> void:
 	var camera_center := camera_2d.get_screen_center_position()
 	var grounded := is_on_floor()
 
-	var direction := Input.get_axis("Left", "right")
-	var jumping := grounded and Input.is_action_just_pressed("Jump")
+	if is_dead:
+		_apply_death_physics(delta)
+		_update_camera(camera_center)
+		return
+
+	var direction := Input.get_axis("left", "right")
+	var jumping := grounded and Input.is_action_just_pressed("jump")
 
 	if not is_zero_approx(direction):
-		facing_direction = sign(direction)
+		facing_direction = signf(direction)
 
 	var airborne := not grounded or jumping
 	var current_acceleration := air_acceleration if airborne else acceleration
@@ -47,11 +55,7 @@ func _physics_process(delta: float) -> void:
 			current_acceleration * delta
 		)
 	else:
-		velocity.x = move_toward(
-			velocity.x,
-			0.0,
-			current_friction * delta
-		)
+		velocity.x = move_toward(velocity.x, 0.0, current_friction * delta)
 
 	if jumping:
 		velocity.y = -jump_strength
@@ -60,8 +64,20 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	_update_camera(camera_center)
+	_update_animation()
 
 
+func _apply_death_physics(delta: float) -> void:
+	velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	move_and_slide()
+
+
+# The camera holds its last grounded position while airborne, so jumping
+# does not drag the view up and down with the player.
 func _update_camera(previous_center: Vector2) -> void:
 	if is_on_floor():
 		camera_2d.position_smoothing_enabled = _camera_smoothing_enabled
@@ -74,9 +90,35 @@ func _update_camera(previous_center: Vector2) -> void:
 		_camera_frozen = true
 
 
+func _update_animation() -> void:
+	sprite.flip_h = facing_direction < 0.0
+
+	if not is_on_floor():
+		_play("jump")
+	elif absf(velocity.x) > RUN_ANIMATION_THRESHOLD:
+		_play("run")
+	else:
+		_play("idle")
+
+
+func _play(animation_name: StringName) -> void:
+	if sprite.animation != animation_name:
+		sprite.play(animation_name)
+
+
 func take_damage(amount: int) -> void:
+	if is_dead:
+		return
+
 	health -= amount
 	print("Player health: ", health)
 
 	if health <= 0:
-		print("Player defeated!")
+		_die()
+
+
+func _die() -> void:
+	is_dead = true
+	velocity = Vector2.ZERO
+	_play("death")
+	print("Player defeated!")

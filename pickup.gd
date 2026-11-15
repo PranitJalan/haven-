@@ -26,12 +26,17 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
+	var spin := absf(cos(_time * 0.9))
+
 	if kind == Kind.COIN:
-		draw_circle(Vector2.ZERO, 13.0, Color(1.0, 0.8, 0.28))
-		draw_circle(Vector2.ZERO, 8.0, Color(1.0, 0.94, 0.68))
+		draw_circle(Vector2.ZERO, 14.0, Color(0.85, 0.6, 0.12))
+		draw_ellipse(Vector2.ZERO, 11.0 * spin + 2.0, 11.0, Color(1.0, 0.82, 0.3))
+		draw_ellipse(Vector2.ZERO, 6.0 * spin + 1.0, 6.0, Color(1.0, 0.95, 0.72))
 	else:
-		draw_rect(Rect2(-11, -14, 22, 28), Color(0.18, 0.72, 1.0))
-		draw_rect(Rect2(-6, -9, 12, 18), Color(0.72, 0.95, 1.0))
+		draw_circle(Vector2.ZERO, 15.0, Color(0.15, 0.6, 0.95, 0.5))
+		draw_circle(Vector2.ZERO, 10.0, Color(0.35, 0.85, 1.0))
+		draw_circle(Vector2(-3.0, -3.0), 4.0, Color(0.9, 0.99, 1.0))
+
 
 
 func _on_body_entered(body: Node2D) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
 [ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
@@ -16,25 +16,30 @@
 [ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
 [ext_resource type="PackedScene" path="res://coin.tscn" id="5_coin"]
 [ext_resource type="PackedScene" path="res://energy_cell.tscn" id="6_cell"]
+[ext_resource type="PackedScene" path="res://portal.tscn" id="7_portal"]
+[ext_resource type="PackedScene" path="res://level_4.tscn" id="8_next"]
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(3648, 120)
 
-[sub_resource type="RectangleShape2D" id="PlatShape0"]
+[sub_resource type="RectangleShape2D" id="PS0"]
 size = Vector2(240, 32)
 
-[sub_resource type="RectangleShape2D" id="PlatShape1"]
+[sub_resource type="RectangleShape2D" id="PS1"]
 size = Vector2(220, 32)
 
-[sub_resource type="RectangleShape2D" id="PlatShape2"]
+[sub_resource type="RectangleShape2D" id="PS2"]
 size = Vector2(220, 32)
 
-[sub_resource type="RectangleShape2D" id="PlatShape3"]
+[sub_resource type="RectangleShape2D" id="PS3"]
 size = Vector2(240, 32)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_level")
 level_title = "Level 3  ·  The Warden"
+level_number = 3
+is_boss_level = true
+next_level = ExtResource("8_next")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -188,7 +193,7 @@ shape = SubResource("GroundShape")
 [node name="Platforms" type="Node2D" parent="World"]
 
 [node name="Platform0" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(-620, -330)
+position = Vector2(-700, -340)
 collision_layer = 1
 
 [node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform0"]
@@ -199,10 +204,10 @@ offset_bottom = 16.0
 color = Color(0.1, 0.13, 0.18, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform0"]
-shape = SubResource("PlatShape0")
+shape = SubResource("PS0")
 
 [node name="Platform1" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(-200, -470)
+position = Vector2(-250, -480)
 collision_layer = 1
 
 [node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform1"]
@@ -213,10 +218,10 @@ offset_bottom = 16.0
 color = Color(0.1, 0.13, 0.18, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform1"]
-shape = SubResource("PlatShape1")
+shape = SubResource("PS1")
 
 [node name="Platform2" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(430, -470)
+position = Vector2(380, -480)
 collision_layer = 1
 
 [node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform2"]
@@ -227,10 +232,10 @@ offset_bottom = 16.0
 color = Color(0.1, 0.13, 0.18, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform2"]
-shape = SubResource("PlatShape2")
+shape = SubResource("PS2")
 
 [node name="Platform3" type="StaticBody2D" parent="World/Platforms"]
-position = Vector2(860, -330)
+position = Vector2(830, -340)
 collision_layer = 1
 
 [node name="ColorRect" type="ColorRect" parent="World/Platforms/Platform3"]
@@ -241,36 +246,36 @@ offset_bottom = 16.0
 color = Color(0.1, 0.13, 0.18, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platforms/Platform3"]
-shape = SubResource("PlatShape3")
+shape = SubResource("PS3")
 
 [node name="Pickups" type="Node2D" parent="World"]
 
 [node name="Coin0" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-620, -390)
+position = Vector2(-700, -402)
 
 [node name="Coin1" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(-200, -530)
+position = Vector2(-250, -542)
 
 [node name="Coin2" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(430, -530)
+position = Vector2(380, -542)
 
 [node name="Coin3" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(860, -390)
+position = Vector2(830, -402)
 
 [node name="Coin4" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(0, -140)
+position = Vector2(-100, -140)
 
 [node name="Coin5" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(620, -140)
+position = Vector2(500, -140)
 
 [node name="Cell0" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(-200, -535)
+position = Vector2(-250, -545)
 
 [node name="Cell1" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(430, -535)
+position = Vector2(380, -545)
 
 [node name="Cell2" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(120, -140)
+position = Vector2(100, -140)
 
 [node name="Enemies" type="Node2D" parent="World"]
 
@@ -282,8 +287,11 @@ health = 8
 body_scale = 1.5
 tint = Color(1, 0.62, 0.66, 1)
 shoot_interval = 1.5
-detection_range = 1200.0
+detection_range = 1300.0
 stopping_distance = 520.0
+
+[node name="Portal" parent="World" instance=ExtResource("7_portal")]
+position = Vector2(1700, -140)
 
 [node name="Player" parent="World" instance=ExtResource("2_player")]
 position = Vector2(-1500, -200)

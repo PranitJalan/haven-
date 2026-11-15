@@ -40,6 +40,7 @@ func reflect() -> void:
 		return
 
 	reflected = true
+	damage += Game.bonus_reflect()
 
 	remove_from_group("enemy_projectiles")
 	add_to_group("player_projectiles")

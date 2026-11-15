@@ -23,6 +23,8 @@ var _pulse := 0.0
 
 
 func _ready() -> void:
+	max_energy += Game.shield_bonus_energy()
+	recharge_rate += Game.shield_bonus_recharge()
 	energy = max_energy
 	monitoring = false
 	area_entered.connect(_on_area_entered)

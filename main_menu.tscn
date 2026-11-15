@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_menu"]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043, 0.075, 0.11, 1)
+
+[node name="Center" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_right = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Title" type="Label" parent="Center"]
+modulate = Color(0.55, 0.93, 1, 1)
+theme_override_font_sizes/font_size = 78
+text = "HAVEN"
+horizontal_alignment = 1
+
+[node name="Tagline" type="Label" parent="Center"]
+modulate = Color(0.6, 0.72, 0.82, 1)
+theme_override_font_sizes/font_size = 17
+text = "Send it back."
+horizontal_alignment = 1
+
+[node name="Intro" type="Label" parent="Center"]
+custom_minimum_size = Vector2(0, 190)
+modulate = Color(0.74, 0.82, 0.88, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Start" type="Button" parent="Center"]
+custom_minimum_size = Vector2(240, 54)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Begin"
+
+[node name="Quit" type="Button" parent="Center"]
+custom_minimum_size = Vector2(240, 40)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 17
+text = "Quit"
+
+[node name="Controls" type="Label" parent="Center"]
+modulate = Color(0.45, 0.54, 0.62, 1)
+theme_override_font_sizes/font_size = 14
+text = "A / D  move      W  jump      Shift  shield      J  katana"
+horizontal_alignment = 1

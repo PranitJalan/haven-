@@ -14,6 +14,8 @@ var _cooldown_remaining := 0.0
 
 
 func _ready() -> void:
+	damage += Game.katana_bonus_damage()
+	cooldown *= Game.katana_cooldown_scale()
 	monitoring = false
 	area_entered.connect(_on_area_entered)
 	body_entered.connect(_on_body_entered)

@@ -1,6 +1,6 @@
 extends Node
 
-const INTRO := """Haven was the last forest that still remembered how to grow.
+const INTRO := """Everroot was the last forest that still remembered how to grow.
 
 Then the machines came to harvest what it remembered.
 
@@ -12,7 +12,7 @@ You can only send back what is sent at you."""
 
 const ENDING := """The last machine folds, and the mist closes over the scar.
 
-Haven will not remember you. It never remembers its guardians.
+Everroot will not remember you. It never remembers its guardians.
 
 It only remembers how to grow back."""
 

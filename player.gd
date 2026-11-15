@@ -38,12 +38,14 @@ var is_dead := false
 var _invincible_remaining := 0.0
 var _shake_strength := 0.0
 var _was_grounded := true
+var _air_jumps := 0
 var _camera_frozen := false
 var _camera_smoothing_enabled := true
 
 
 func _ready() -> void:
 	max_health += Game.bonus_health()
+	_air_jumps = 1 if Game.has_double_jump else 0
 	health = max_health
 
 	_camera_smoothing_enabled = camera_2d.position_smoothing_enabled
@@ -73,7 +75,12 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var direction := Input.get_axis("left", "right")
-	var jumping := grounded and Input.is_action_just_pressed("jump")
+	var wants_jump := Input.is_action_just_pressed("jump")
+	var air_jump := wants_jump and not grounded and _air_jumps > 0
+	var jumping := wants_jump and (grounded or air_jump)
+
+	if air_jump:
+		_air_jumps -= 1
 
 	if not is_zero_approx(direction):
 		facing_direction = signf(direction)
@@ -95,6 +102,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -jump_strength
 		_squash(Vector2(0.82, 1.2))
 		_spawn_puff(jump_puff_scene)
+
+		if air_jump:
+			shake_camera(2.0)
 	elif not grounded:
 		velocity.y += gravity * delta
 
@@ -102,6 +112,9 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor() and not _was_grounded:
 		_land()
+
+	if is_on_floor():
+		_air_jumps = 1 if Game.has_double_jump else 0
 
 	_was_grounded = is_on_floor()
 
@@ -160,6 +173,12 @@ func _squash(amount: Vector2) -> void:
 
 func refill_shield() -> void:
 	shield.refill()
+
+
+func heal_full() -> void:
+	health = max_health
+	health_changed.emit(health)
+	_flash()
 
 
 func shake_camera(strength: float) -> void:

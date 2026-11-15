@@ -29,7 +29,7 @@ alignment = 1
 [node name="Title" type="Label" parent="Center"]
 modulate = Color(0.55, 0.93, 1, 1)
 theme_override_font_sizes/font_size = 78
-text = "HAVEN"
+text = "RIPOSTE"
 horizontal_alignment = 1
 
 [node name="Tagline" type="Label" parent="Center"]

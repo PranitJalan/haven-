@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
 [ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://wlujffyam4eh" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/02_Bushes.png" id="bg_Bushes"]
 [ext_resource type="Texture2D" uid="uid://56sj4ve07ou1" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/01_Mist.png" id="bg_Mist"]
 [ext_resource type="Script" path="res://level.gd" id="1_level"]
+[ext_resource type="PackedScene" path="res://tablet.tscn" id="9_tab"]
+[ext_resource type="PackedScene" path="res://shrine.tscn" id="10_shr"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_enemy"]
 [ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
@@ -277,6 +279,12 @@ position = Vector2(380, -545)
 [node name="Cell2" parent="World/Pickups" instance=ExtResource("6_cell")]
 position = Vector2(100, -140)
 
+[node name="Secret0" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(-250, -605)
+
+[node name="Secret1" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(-210, -605)
+
 [node name="Enemies" type="Node2D" parent="World"]
 
 [node name="Enemy0" parent="World/Enemies" instance=ExtResource("3_enemy")]
@@ -289,6 +297,14 @@ tint = Color(1, 0.62, 0.66, 1)
 shoot_interval = 1.5
 detection_range = 1300.0
 stopping_distance = 520.0
+
+[node name="Tablet" parent="World" instance=ExtResource("9_tab")]
+position = Vector2(-1150, -130)
+id = "t3"
+text = "Plating turns the blade.\nOnly what it throws will open it."
+
+[node name="Shrine" parent="World" instance=ExtResource("10_shr")]
+position = Vector2(100, -110)
 
 [node name="Portal" parent="World" instance=ExtResource("7_portal")]
 position = Vector2(1700, -140)

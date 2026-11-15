@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://shrine.gd" id="1_shrine"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shrine"]
+size = Vector2(80, 70)
+
+[node name="Shrine" type="Area2D" groups=["shrines"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_shrine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_shrine")

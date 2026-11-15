@@ -7,6 +7,11 @@ const MAX_UPGRADE := 3
 var banked_coins := 0
 var pending_next: PackedScene = null
 
+# Unlocked by beating the first Warden, Hollow Knight style.
+var has_double_jump := false
+var inscriptions := 0
+var just_unlocked := ""
+
 var shield_level := 0
 var health_level := 0
 var reflect_level := 0
@@ -16,6 +21,9 @@ var katana_level := 0
 func reset() -> void:
 	banked_coins = 0
 	pending_next = null
+	has_double_jump = false
+	inscriptions = 0
+	just_unlocked = ""
 	shield_level = 0
 	health_level = 0
 	reflect_level = 0

@@ -93,7 +93,7 @@ func show_ending(text: String) -> void:
 	title.text = "You Win"
 	title.modulate = WIN_COLOR
 	body.text = text
-	action_button.text = "Return to Haven"
+	action_button.text = "Return to the grove"
 	hint.text = ""
 	end_screen.show()
 	action_button.grab_focus()

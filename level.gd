@@ -40,6 +40,18 @@ func _ready() -> void:
 
 	_refresh_coins()
 
+	for node in get_tree().get_nodes_in_group("tablets"):
+		var tablet := node as Tablet
+
+		if tablet != null:
+			tablet.inscription_read.connect(_on_inscription)
+
+	for node in get_tree().get_nodes_in_group("shrines"):
+		var shrine := node as Shrine
+
+		if shrine != null:
+			shrine.used.connect(_on_shrine_used)
+
 	for node in get_tree().get_nodes_in_group("enemies"):
 		var enemy := node as Enemy
 
@@ -63,6 +75,16 @@ func _on_pickup_collected(kind: Pickup.Kind) -> void:
 
 	_coins += 1
 	_refresh_coins()
+
+
+func _on_inscription(text: String) -> void:
+	Game.inscriptions += 1
+	ui.show_story(text)
+
+
+func _on_shrine_used() -> void:
+	player.heal_full()
+	ui.show_banner("The root remembers you")
 
 
 func _on_enemy_died() -> void:
@@ -99,6 +121,11 @@ func _complete() -> void:
 		return
 
 	if is_boss_level:
+		# First Warden down grants the second jump.
+		if not Game.has_double_jump:
+			Game.has_double_jump = true
+			Game.just_unlocked = "You can jump again in mid-air."
+
 		Game.pending_next = next_level
 		get_tree().change_scene_to_file("res://upgrade_menu.tscn")
 		return

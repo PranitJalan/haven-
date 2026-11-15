@@ -8,6 +8,7 @@ const SWEEP := PI / 1.7
 @export var cooldown := 0.42
 
 @onready var player: Player = get_parent()
+@onready var blade: Sprite2D = $Blade
 
 var _swing_remaining := 0.0
 var _cooldown_remaining := 0.0
@@ -23,6 +24,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	rotation = 0.0 if player.facing_direction > 0.0 else PI
+	_update_blade()
 
 	_cooldown_remaining = maxf(_cooldown_remaining - delta, 0.0)
 
@@ -53,6 +55,17 @@ func _start_swing() -> void:
 
 func _swing_progress() -> float:
 	return 1.0 - (_swing_remaining / swing_time)
+
+
+func _update_blade() -> void:
+	if _swing_remaining <= 0.0:
+		blade.visible = false
+		return
+
+	var t := _swing_progress()
+	blade.visible = true
+	blade.rotation = lerpf(-SWEEP * 0.55, SWEEP * 0.45, t)
+	blade.modulate.a = clampf(1.3 - t, 0.0, 1.0)
 
 
 # A crescent that sweeps down through the arc and fades as it goes.

@@ -15,7 +15,15 @@ const UPGRADES := [
 func _ready() -> void:
 	continue_button.pressed.connect(_continue)
 	_rebuild()
+	_show_unlock()
 	continue_button.grab_focus()
+
+
+func _show_unlock() -> void:
+	var unlock: Label = $Center/Unlock
+	unlock.text = Game.just_unlocked
+	unlock.visible = not Game.just_unlocked.is_empty()
+	Game.just_unlocked = ""
 
 
 func _rebuild() -> void:

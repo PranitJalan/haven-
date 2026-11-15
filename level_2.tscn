@@ -223,22 +223,52 @@ trunk_width = 115.0
 tree_height = 1557.0
 
 [node name="T5" type="Node2D" parent="World/BackDecor"]
-position = Vector2(6331, -80)
+position = Vector2(4237, -80)
 script = ExtResource("s_tree")
-trunk_width = 212.0
-tree_height = 1772.0
+trunk_width = 135.0
+tree_height = 1566.0
 
 [node name="T6" type="Node2D" parent="World/BackDecor"]
-position = Vector2(11305, 0)
+position = Vector2(5519, -80)
+script = ExtResource("s_tree")
+trunk_width = 156.0
+tree_height = 1437.0
+
+[node name="T7" type="Node2D" parent="World/BackDecor"]
+position = Vector2(8495, 0)
+script = ExtResource("s_tree")
+trunk_width = 212.0
+tree_height = 1685.0
+
+[node name="T8" type="Node2D" parent="World/BackDecor"]
+position = Vector2(8903, 0)
+script = ExtResource("s_tree")
+trunk_width = 209.0
+tree_height = 1671.0
+
+[node name="T9" type="Node2D" parent="World/BackDecor"]
+position = Vector2(9629, 0)
+script = ExtResource("s_tree")
+trunk_width = 156.0
+tree_height = 1405.0
+
+[node name="T10" type="Node2D" parent="World/BackDecor"]
+position = Vector2(9931, 0)
 script = ExtResource("s_tree")
 trunk_width = 191.0
 tree_height = 1565.0
 
-[node name="T7" type="Node2D" parent="World/BackDecor"]
-position = Vector2(12296, 0)
+[node name="T11" type="Node2D" parent="World/BackDecor"]
+position = Vector2(10922, 0)
 script = ExtResource("s_tree")
 trunk_width = 170.0
 tree_height = 1365.0
+
+[node name="T12" type="Node2D" parent="World/BackDecor"]
+position = Vector2(11664, 0)
+script = ExtResource("s_tree")
+trunk_width = 163.0
+tree_height = 1345.0
 
 [node name="Ruin0" type="Node2D" parent="World/BackDecor"]
 position = Vector2(1250, -30)
@@ -246,14 +276,14 @@ script = ExtResource("s_ruin")
 seed_value = 279
 
 [node name="Ruin1" type="Node2D" parent="World/BackDecor"]
-position = Vector2(6150, -90)
+position = Vector2(5570, -90)
 script = ExtResource("s_ruin")
-seed_value = 6145
+seed_value = 2460
 
 [node name="Ruin2" type="Node2D" parent="World/BackDecor"]
-position = Vector2(10800, -10)
+position = Vector2(10270, -10)
 script = ExtResource("s_ruin")
-seed_value = 6703
+seed_value = 5450
 
 [node name="Terrain" type="Node2D" parent="World"]
 
@@ -273,16 +303,16 @@ seed_value = 2704
 vines = false
 
 [node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/Ground1"]
-polygon = PackedVector2Array(4100, -107.9, 4190, -110.3, 4280, -88.7, 4370, -68.5, 4460, -76.4, 4550, -69.6, 4640, -56.5, 4730, -43.8, 4820, -62.8, 4910, -63.7, 5000, -54.4, 5090, -73.5, 5180, -80.2, 5270, -82.2, 5360, -120.9, 5450, -130.4, 5540, -147.9, 5630, -159.1, 5720, -168.9, 5810, -176.7, 5900, -189.4, 5990, -183.3, 6080, -180.1, 6170, -195.3, 6260, -188.3, 6350, -162.9, 6440, -158.9, 6530, -143.3, 6620, -146.5, 6710, -131.3, 6800, -116.7, 6890, -93.7, 6980, -72.1, 7070, -81.5, 7160, -47.3, 7250, -53.5, 7340, -48.9, 7430, -63.1, 7520, -59.1, 7610, -60.1, 7700, -61.7, 7790, -81.0, 7880, -86.2, 7970, -107.4, 8060, -107.1, 8150, -139.6, 8200, 1000, 4100, 1000)
+polygon = PackedVector2Array(3640, -107.9, 3730, -110.3, 3820, -88.7, 3910, -68.5, 4000, -76.4, 4090, -69.6, 4180, -56.5, 4270, -43.8, 4360, -62.8, 4450, -63.7, 4540, -54.4, 4630, -73.5, 4720, -80.2, 4810, -82.2, 4900, -120.9, 4990, -130.4, 5080, -147.9, 5170, -159.1, 5260, -168.9, 5350, -176.7, 5440, -189.4, 5530, -183.3, 5620, -180.1, 5710, -195.3, 5800, -188.3, 5890, -162.9, 5980, -158.9, 6070, -143.3, 6160, -146.5, 6250, -131.3, 6340, -116.7, 6430, -93.7, 6520, -72.1, 6610, -81.5, 6700, -47.3, 6790, -53.5, 6880, -48.9, 6970, -63.1, 7060, -59.1, 7150, -60.1, 7240, -61.7, 7330, -81.0, 7420, -86.2, 7500, 1000, 3640, 1000)
 
 [node name="Ground2" type="StaticBody2D" parent="World/Terrain"]
 script = ExtResource("s_terrain")
 collision_layer = 1
-seed_value = 3070
+seed_value = 4373
 vines = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/Ground2"]
-polygon = PackedVector2Array(9000, -52.2, 9090, -27.7, 9180, -18.5, 9270, -7.7, 9360, 19.1, 9450, 32.3, 9540, 39.0, 9630, 41.1, 9720, 17.2, 9810, 11.6, 9900, 17.3, 9990, 16.3, 10080, 10.4, 10170, -19.5, 10260, -41.7, 10350, -36.2, 10440, -57.2, 10530, -72.9, 10620, -74.0, 10710, -95.3, 10800, -108.3, 10890, -97.5, 10980, -103.2, 11070, -103.4, 11160, -96.2, 11250, -87.7, 11340, -79.3, 11430, -76.1, 11520, -66.5, 11610, -43.4, 11700, -39.8, 11790, -6.9, 11880, -1.5, 11970, 21.9, 12060, 28.2, 12150, 28.8, 12240, 40.6, 12330, 18.0, 12420, 33.4, 12510, 29.2, 12600, 0.4, 12600, 1000, 9000, 1000)
+polygon = PackedVector2Array(7940, -33.0, 8030, -23.8, 8120, -16.0, 8210, 2.3, 8300, 20.6, 8390, 18.5, 8480, 24.8, 8570, 26.3, 8660, 18.8, 8750, 32.7, 8840, 9.2, 8930, 0.4, 9020, -4.0, 9110, -6.2, 9200, -40.5, 9290, -47.6, 9380, -58.4, 9470, -79.0, 9560, -88.6, 9650, -90.1, 9740, -111.4, 9830, -108.3, 9920, -103.1, 10010, -114.3, 10100, -98.3, 10190, -96.5, 10280, -74.4, 10370, -72.7, 10460, -66.5, 10550, -33.9, 10640, -37.5, 10730, -27.4, 10820, -3.9, 10910, 22.4, 11000, 5.3, 11090, 30.6, 11180, 25.7, 11270, 43.1, 11360, 14.3, 11450, 30.9, 11540, 17.5, 11630, 1.0, 11720, -12.9, 11810, -35.1, 11900, -30.4, 11990, -53.9, 12080, -75.2, 12170, -80.3, 12260, -83.7, 12350, -113.8, 12440, -100.6, 12530, -108.6, 12600, 1000, 7940, 1000)
 
 [node name="Flora" type="Node2D" parent="World"]
 
@@ -350,110 +380,103 @@ stalk_height = 93.0
 bulbs = 4
 
 [node name="Glow9" type="Area2D" parent="World/Flora"]
-position = Vector2(4360, -180)
+position = Vector2(3900, -180)
 script = ExtResource("s_glow")
-seed_value = 7025
-stalk_height = 94.0
+seed_value = 5612
+stalk_height = 132.0
 bulbs = 2
 
 [node name="Glow10" type="Area2D" parent="World/Flora"]
-position = Vector2(4779, -180)
+position = Vector2(4595, -180)
 script = ExtResource("s_glow")
-seed_value = 8096
-stalk_height = 84.0
-bulbs = 2
+seed_value = 4889
+stalk_height = 105.0
+bulbs = 3
 
 [node name="Glow11" type="Area2D" parent="World/Flora"]
-position = Vector2(5085, -180)
+position = Vector2(4840, -180)
 script = ExtResource("s_glow")
-seed_value = 9695
-stalk_height = 133.0
+seed_value = 6748
+stalk_height = 166.0
 bulbs = 3
 
 [node name="Glow12" type="Area2D" parent="World/Flora"]
-position = Vector2(5397, -180)
+position = Vector2(5519, -180)
 script = ExtResource("s_glow")
-seed_value = 3749
-stalk_height = 157.0
-bulbs = 3
-
-[node name="Glow13" type="Area2D" parent="World/Flora"]
-position = Vector2(5702, -180)
-script = ExtResource("s_glow")
-seed_value = 494
-stalk_height = 139.0
+seed_value = 7868
+stalk_height = 150.0
 bulbs = 2
 
-[node name="Glow14" type="Area2D" parent="World/Flora"]
-position = Vector2(6016, -180)
+[node name="Glow13" type="Area2D" parent="World/Flora"]
+position = Vector2(5917, -180)
 script = ExtResource("s_glow")
-seed_value = 8495
-stalk_height = 154.0
+seed_value = 1628
+stalk_height = 148.0
+bulbs = 4
+
+[node name="Glow14" type="Area2D" parent="World/Flora"]
+position = Vector2(6532, -180)
+script = ExtResource("s_glow")
+seed_value = 7658
+stalk_height = 129.0
 bulbs = 3
 
 [node name="Glow15" type="Area2D" parent="World/Flora"]
-position = Vector2(6638, -180)
+position = Vector2(7207, -180)
 script = ExtResource("s_glow")
-seed_value = 9287
-stalk_height = 131.0
+seed_value = 6319
+stalk_height = 73.0
 bulbs = 2
 
 [node name="Glow16" type="Area2D" parent="World/Flora"]
-position = Vector2(7047, -180)
+position = Vector2(8200, -100)
 script = ExtResource("s_glow")
-seed_value = 8608
-stalk_height = 85.0
-bulbs = 3
+seed_value = 9784
+stalk_height = 75.0
+bulbs = 2
 
 [node name="Glow17" type="Area2D" parent="World/Flora"]
-position = Vector2(7414, -180)
-script = ExtResource("s_glow")
-seed_value = 437
-stalk_height = 87.0
-bulbs = 4
-
-[node name="Glow18" type="Area2D" parent="World/Flora"]
-position = Vector2(7682, -180)
-script = ExtResource("s_glow")
-seed_value = 6947
-stalk_height = 140.0
-bulbs = 4
-
-[node name="Glow19" type="Area2D" parent="World/Flora"]
-position = Vector2(9984, -100)
-script = ExtResource("s_glow")
-seed_value = 4893
-stalk_height = 143.0
-bulbs = 3
-
-[node name="Glow20" type="Area2D" parent="World/Flora"]
-position = Vector2(10242, -100)
-script = ExtResource("s_glow")
-seed_value = 9142
-stalk_height = 71.0
-bulbs = 4
-
-[node name="Glow21" type="Area2D" parent="World/Flora"]
-position = Vector2(11305, -100)
+position = Vector2(9931, -100)
 script = ExtResource("s_glow")
 seed_value = 2754
 stalk_height = 110.0
 bulbs = 2
 
+[node name="Glow18" type="Area2D" parent="World/Flora"]
+position = Vector2(11308, -100)
+script = ExtResource("s_glow")
+seed_value = 8223
+stalk_height = 97.0
+bulbs = 3
+
+[node name="Glow19" type="Area2D" parent="World/Flora"]
+position = Vector2(11664, -100)
+script = ExtResource("s_glow")
+seed_value = 2512
+stalk_height = 162.0
+bulbs = 3
+
+[node name="Glow20" type="Area2D" parent="World/Flora"]
+position = Vector2(12345, -100)
+script = ExtResource("s_glow")
+seed_value = 7425
+stalk_height = 106.0
+bulbs = 3
+
 [node name="Shroom0" type="Area2D" parent="World/Flora"]
-position = Vector2(3080, -90)
+position = Vector2(3130, -90)
 script = ExtResource("s_shroom")
 
 [node name="Fall0" type="Node2D" parent="World/Flora"]
-position = Vector2(3650, -760)
+position = Vector2(3420, -760)
 script = ExtResource("s_fall")
 
 [node name="Shroom1" type="Area2D" parent="World/Flora"]
-position = Vector2(8080, -150)
+position = Vector2(7430, -150)
 script = ExtResource("s_shroom")
 
 [node name="Fall1" type="Node2D" parent="World/Flora"]
-position = Vector2(8600, -820)
+position = Vector2(7720, -820)
 script = ExtResource("s_fall")
 
 [node name="Pickups" type="Node2D" parent="World"]
@@ -485,35 +508,29 @@ position = Vector2(2417, -190)
 [node name="E8" parent="World/Pickups" instance=ExtResource("6_cell")]
 position = Vector2(2417, -210)
 
-[node name="C9" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(4360, -250)
+[node name="E9" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(4237, -270)
 
 [node name="C10" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(4779, -250)
+position = Vector2(5917, -250)
 
 [node name="C11" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(5085, -250)
+position = Vector2(6532, -250)
 
 [node name="C12" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(5397, -250)
+position = Vector2(6871, -250)
 
 [node name="C13" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(5702, -250)
+position = Vector2(8903, -170)
 
-[node name="C14" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(6331, -250)
+[node name="E14" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(9629, -190)
 
-[node name="E15" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(9260, -190)
+[node name="C15" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(9931, -170)
 
-[node name="E16" parent="World/Pickups" instance=ExtResource("6_cell")]
-position = Vector2(9984, -190)
-
-[node name="C17" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(11003, -170)
-
-[node name="C18" parent="World/Pickups" instance=ExtResource("5_coin")]
-position = Vector2(11305, -170)
+[node name="C16" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(12345, -170)
 
 [node name="Checkpoints" type="Node2D" parent="World"]
 
@@ -522,24 +539,24 @@ position = Vector2(-380, -60)
 script = ExtResource("s_check")
 
 [node name="Lantern1" type="Area2D" parent="World/Checkpoints"]
-position = Vector2(4420, -120)
+position = Vector2(3960, -120)
 script = ExtResource("s_check")
 
 [node name="Lantern2" type="Area2D" parent="World/Checkpoints"]
-position = Vector2(9320, -40)
+position = Vector2(8260, -40)
 script = ExtResource("s_check")
 
 [node name="KillZones" type="Node2D" parent="World"]
 
 [node name="Chasm0" type="Area2D" parent="World/KillZones"]
-position = Vector2(3650, 520)
+position = Vector2(3420, 520)
 script = ExtResource("s_kill")
 
 [node name="Shape" type="CollisionShape2D" parent="World/KillZones/Chasm0"]
 shape = SubResource("chasm")
 
 [node name="Chasm1" type="Area2D" parent="World/KillZones"]
-position = Vector2(8600, 520)
+position = Vector2(7720, 520)
 script = ExtResource("s_kill")
 
 [node name="Shape" type="CollisionShape2D" parent="World/KillZones/Chasm1"]
@@ -592,28 +609,28 @@ trunk_width = 253.0
 tree_height = 1642.0
 
 [node name="F1" type="Node2D" parent="World/Foreground"]
-position = Vector2(4779, 0)
+position = Vector2(3900, 0)
 script = ExtResource("s_tree")
-trunk_width = 285.0
-tree_height = 1915.0
+trunk_width = 283.0
+tree_height = 1647.0
 
 [node name="F2" type="Node2D" parent="World/Foreground"]
-position = Vector2(5085, 0)
+position = Vector2(6157, 0)
 script = ExtResource("s_tree")
-trunk_width = 262.0
-tree_height = 1821.0
+trunk_width = 191.0
+tree_height = 1710.0
 
 [node name="F3" type="Node2D" parent="World/Foreground"]
-position = Vector2(5702, 0)
+position = Vector2(8903, 80)
 script = ExtResource("s_tree")
-trunk_width = 252.0
-tree_height = 1438.0
+trunk_width = 267.0
+tree_height = 1499.0
 
 [node name="F4" type="Node2D" parent="World/Foreground"]
-position = Vector2(7414, 0)
+position = Vector2(11981, 80)
 script = ExtResource("s_tree")
-trunk_width = 209.0
-tree_height = 1475.0
+trunk_width = 285.0
+tree_height = 1761.0
 
 [node name="Atmosphere" type="Node2D" parent="."]
 script = ExtResource("s_atmo")

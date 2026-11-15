@@ -1,0 +1,41 @@
+extends CharacterBody2D
+
+
+@export var gravity := 960
+@export var acceleration := 200
+@export var friction := 200
+@export var jump_strength := 200
+@export var max_speed := 600
+@export var range := 200
+
+var direction := 1
+var jump := false
+
+func _physics_process(delta: float) -> void:
+	get_input()
+	set_stuff(delta)
+	move_and_slide()
+
+func get_input():
+	var player = get_tree().get_first_node_in_group("player")
+	if abs(player.global_position.x - global_position.x) < range:
+		if player.global_position.x < global_position.x:
+			direction = -1
+		elif player.global_position.x > global_position.x:
+			direction = 1
+		else:
+			direction  = 0
+		
+	
+
+func set_stuff(delta):
+	if direction:
+		velocity.x = move_toward(velocity.x, max_speed*direction, acceleration*delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, friction*delta)
+	
+	if not is_on_floor():
+		velocity.y += gravity
+	else:
+		if jump:
+			velocity.y -= jump_strength

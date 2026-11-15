@@ -9,7 +9,9 @@ const FALL_LIMIT := 900.0
 @export var next_level: PackedScene
 
 @onready var player: Player = $World/Player
-@onready var portal: Portal = $World/Portal
+# Hand built levels may not have a portal; those finish as soon as the
+# last machine falls.
+@onready var portal: Portal = get_node_or_null("World/Portal") as Portal
 @onready var ui: CanvasLayer = $UI
 
 var _living_enemies := 0
@@ -31,7 +33,8 @@ func _ready() -> void:
 
 	player.health_changed.connect(ui.set_health)
 	player.died.connect(_on_player_died)
-	portal.entered.connect(_complete)
+	if portal != null:
+		portal.entered.connect(_complete)
 
 	for node in get_tree().get_nodes_in_group("pickups"):
 		var pickup := node as Pickup
@@ -128,6 +131,10 @@ func _on_enemy_died() -> void:
 
 
 func _open_portal() -> void:
+	if portal == null:
+		_complete()
+		return
+
 	portal.open()
 	ui.show_banner("The way is open")
 

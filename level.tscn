@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bffs0yqr2jdrx"]
+[gd_scene load_steps=16 format=3 uid="uid://bffs0yqr2jdrx"]
 
 [ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
 [ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://wlujffyam4eh" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/02_Bushes.png" id="bg_Bushes"]
 [ext_resource type="Texture2D" uid="uid://56sj4ve07ou1" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/01_Mist.png" id="bg_Mist"]
 [ext_resource type="Script" path="res://level.gd" id="1_level"]
-[ext_resource type="Script" path="res://background.gd" id="5_bg"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_enemy"]
 [ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
@@ -24,234 +23,133 @@ script = ExtResource("1_level")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
-script = ExtResource("5_bg")
 
-[node name="Sky" type="Node2D" parent="Background"]
+[node name="Sky" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
 
-[node name="Copy0" type="Sprite2D" parent="Background/Sky"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Sky")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Sky"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Sky")
-centered = false
+[node name="Forest09" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Sky"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Sky")
-centered = false
-
-[node name="Forest09" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Forest09"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest09"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Forest09")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Forest09"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest09")
-centered = false
+[node name="Forest08" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Forest09"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest09")
-centered = false
-
-[node name="Forest08" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Forest08"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest08"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Forest08")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Forest08"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest08")
-centered = false
+[node name="Forest07" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Forest08"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest08")
-centered = false
-
-[node name="Forest07" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Forest07"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest07"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Forest07")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Forest07"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest07")
-centered = false
+[node name="Forest06" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Forest07"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest07")
-centered = false
-
-[node name="Forest06" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Forest06"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest06"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Forest06")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Forest06"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest06")
-centered = false
+[node name="Motes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.58, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(7.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Forest06"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest06")
-centered = false
-
-[node name="Motes" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Motes"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Motes"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Motes")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Motes"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Motes")
-centered = false
+[node name="Forest04" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.66, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Motes"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Motes")
-centered = false
-
-[node name="Forest04" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Forest04"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest04"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Forest04")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Forest04"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest04")
-centered = false
+[node name="Dust" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.74, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(-11.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Forest04"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Forest04")
-centered = false
-
-[node name="Dust" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Dust"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Dust"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Dust")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Dust"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Dust")
-centered = false
+[node name="Bushes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.84, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Dust"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Dust")
-centered = false
-
-[node name="Bushes" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Bushes"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Bushes"]
 texture_filter = 1
 position = Vector2(0, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Bushes")
 centered = false
 
-[node name="Copy1" type="Sprite2D" parent="Background/Bushes"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Bushes")
-centered = false
+[node name="Mist" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.92, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(-18.0, 0)
 
-[node name="Copy2" type="Sprite2D" parent="Background/Bushes"]
-texture_filter = 1
-position = Vector2(2880, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Bushes")
-centered = false
-
-[node name="Mist" type="Node2D" parent="Background"]
-
-[node name="Copy0" type="Sprite2D" parent="Background/Mist"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Mist"]
 texture_filter = 1
 position = Vector2(0, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Mist")
-centered = false
-
-[node name="Copy1" type="Sprite2D" parent="Background/Mist"]
-texture_filter = 1
-position = Vector2(1440, -162)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("bg_Mist")
-centered = false
-
-[node name="Copy2" type="Sprite2D" parent="Background/Mist"]
-texture_filter = 1
-position = Vector2(2880, -162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("bg_Mist")
 centered = false

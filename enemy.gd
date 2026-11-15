@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var max_speed := 600
 @export var range := 200
 @export var distance := 750
+@export var health := 5
 
 var direction := 0
 var jump := false
@@ -40,3 +41,10 @@ func set_stuff(delta):
 	else:
 		if jump:
 			velocity.y -= jump_strength
+			
+func take_damage(amount: int) -> void:
+	health -= amount
+	print("Enemy health: ", health)
+	
+	if health <= 0:
+		queue_free()

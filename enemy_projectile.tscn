@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dc1h72qy67w3g"]
+
+[ext_resource type="Script" uid="uid://dsgn47c3d0ypc" path="res://enemy_projectile.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bpu1b6ogxmlhb" path="res://Rocket.png" id="2_rocket"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rocket"]
+size = Vector2(52, 16)
+
+[node name="EnemyProjectile" type="Area2D" groups=["enemy_projectiles"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_rocket")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rocket")

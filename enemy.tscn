@@ -1,17 +1,21 @@
-[gd_scene format=3 uid="uid://2oqfqxx5b61g"]
+[gd_scene load_steps=5 format=3 uid="uid://2oqfqxx5b61g"]
 
 [ext_resource type="Script" uid="uid://cd2dj742ybtwn" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_qi2p4"]
+[ext_resource type="PackedScene" uid="uid://dc1h72qy67w3g" path="res://enemy_projectile.tscn" id="3_rocket"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
 size = Vector2(122, 124)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=470170794]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=470170794 groups=["enemies"]]
+collision_layer = 4
 script = ExtResource("1_4gyqm")
-range = 1000
+projectile_scene = ExtResource("3_rocket")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1785970370]
 texture = ExtResource("2_qi2p4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479695066]
 shape = SubResource("RectangleShape2D_454dt")
+
+[node name="ShootTimer" type="Timer" parent="."]

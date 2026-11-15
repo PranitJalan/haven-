@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://credits.gd" id="1_credits"]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_credits")
+
+[node name="Bg" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043, 0.075, 0.11, 1)
+
+[node name="Center" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = 24.0
+offset_right = -70.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="Center"]
+modulate = Color(0.55, 0.93, 1, 1)
+theme_override_font_sizes/font_size = 44
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Center"]
+modulate = Color(0.78, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Back" type="Button" parent="Center"]
+custom_minimum_size = Vector2(200, 44)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "Back"

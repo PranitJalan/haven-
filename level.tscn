@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://bgghccjmsu6s6"]
+
+[ext_resource type="Script" uid="uid://cp0qdfwi1hsu6" path="res://level.gd" id="1_level"]
+[ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
+[ext_resource type="Texture2D" uid="uid://wlujffyam4eh" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/02_Bushes.png" id="bg_Bushes"]
+[ext_resource type="Texture2D" uid="uid://daunrkn3trg88" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/03_Particles.png" id="bg_Dust"]
+[ext_resource type="Texture2D" uid="uid://gtvtpxyjptta" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/04_Forest.png" id="bg_Forest04"]
+[ext_resource type="Texture2D" uid="uid://caigb8kr3a2fy" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/06_Forest.png" id="bg_Forest06"]
+[ext_resource type="Texture2D" uid="uid://bt2jkkak0ksga" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/07_Forest.png" id="bg_Forest07"]
+[ext_resource type="Texture2D" uid="uid://c543q50co1yd4" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/08_Forest.png" id="bg_Forest08"]
+[ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
+[ext_resource type="Texture2D" uid="uid://56sj4ve07ou1" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/01_Mist.png" id="bg_Mist"]
+[ext_resource type="Texture2D" uid="uid://d1jldl171r1vm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/05_Particles.png" id="bg_Motes"]
+[ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
+size = Vector2(3648, 120)
+
+[node name="Level" type="Node2D" unique_id=1341368693]
+script = ExtResource("1_level")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=244298685]
+layer = -1
+
+[node name="Sky" type="Parallax2D" parent="Background" unique_id=382442857]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky" unique_id=753856529]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Sky")
+centered = false
+
+[node name="Forest09" type="Parallax2D" parent="Background" unique_id=1342712949]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest09" unique_id=1533313473]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest09")
+centered = false
+
+[node name="Forest08" type="Parallax2D" parent="Background" unique_id=502672660]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest08" unique_id=1407671063]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest08")
+centered = false
+
+[node name="Forest07" type="Parallax2D" parent="Background" unique_id=1125085559]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest07" unique_id=1357934729]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest07")
+centered = false
+
+[node name="Forest06" type="Parallax2D" parent="Background" unique_id=233349963]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest06" unique_id=509284713]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest06")
+centered = false
+
+[node name="Motes" type="Parallax2D" parent="Background" unique_id=230629727]
+scroll_scale = Vector2(0.58, 1)
+repeat_size = Vector2(1440, 0)
+autoscroll = Vector2(7, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Motes" unique_id=1669690179]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Motes")
+centered = false
+
+[node name="Forest04" type="Parallax2D" parent="Background" unique_id=1365215764]
+scroll_scale = Vector2(0.66, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest04" unique_id=1815693393]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest04")
+centered = false
+
+[node name="Dust" type="Parallax2D" parent="Background" unique_id=890308479]
+scroll_scale = Vector2(0.74, 1)
+repeat_size = Vector2(1440, 0)
+autoscroll = Vector2(-11, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Dust" unique_id=1653649519]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Dust")
+centered = false
+
+[node name="Bushes" type="Parallax2D" parent="Background" unique_id=342684309]
+scroll_scale = Vector2(0.84, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Bushes" unique_id=1655222140]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Bushes")
+centered = false
+
+[node name="Mist" type="Parallax2D" parent="Background" unique_id=285921716]
+scroll_scale = Vector2(0.92, 1)
+repeat_size = Vector2(1440, 0)
+autoscroll = Vector2(-18, 0)
+repeat_times = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Mist" unique_id=414106042]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Mist")
+centered = false
+
+[node name="World" type="Node2D" parent="." unique_id=264891781]
+
+[node name="Ground" type="StaticBody2D" parent="World" unique_id=1223696112]
+
+[node name="ColorRect" type="ColorRect" parent="World/Ground" unique_id=390267642]
+custom_minimum_size = Vector2(3650, 0)
+offset_left = -1825.0
+offset_top = -72.5
+offset_right = 1825.0
+offset_bottom = 600.0
+color = Color(0.07, 0.09, 0.12, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground" unique_id=439358231]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_454dt")
+
+[node name="Enemies" type="Node2D" parent="World" unique_id=601048190]
+
+[node name="Enemy" parent="World/Enemies" unique_id=860472222 instance=ExtResource("3_enemy")]
+position = Vector2(1050, -300)
+
+[node name="Player" parent="World" unique_id=1059893346]
+position = Vector2(-26, -200)
+camera_limit_left = -1825
+camera_limit_right = 1825
+camera_limit_bottom = 286
+
+[node name="UI" parent="." unique_id=285835228 instance=ExtResource("4_ui")]

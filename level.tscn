@@ -1,38 +1,179 @@
-[gd_scene format=3 uid="uid://bffs0yqr2jdrx"]
+[gd_scene load_steps=16 format=3 uid="uid://bffs0yqr2jdrx"]
 
-[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_oi3di"]
-[ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_oi3di"]
+[ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
+[ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
+[ext_resource type="Texture2D" uid="uid://c543q50co1yd4" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/08_Forest.png" id="bg_Forest08"]
+[ext_resource type="Texture2D" uid="uid://bt2jkkak0ksga" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/07_Forest.png" id="bg_Forest07"]
+[ext_resource type="Texture2D" uid="uid://caigb8kr3a2fy" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/06_Forest.png" id="bg_Forest06"]
+[ext_resource type="Texture2D" uid="uid://d1jldl171r1vm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/05_Particles.png" id="bg_Motes"]
+[ext_resource type="Texture2D" uid="uid://gtvtpxyjptta" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/04_Forest.png" id="bg_Forest04"]
+[ext_resource type="Texture2D" uid="uid://daunrkn3trg88" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/03_Particles.png" id="bg_Dust"]
+[ext_resource type="Texture2D" uid="uid://wlujffyam4eh" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/02_Bushes.png" id="bg_Bushes"]
+[ext_resource type="Texture2D" uid="uid://56sj4ve07ou1" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/01_Mist.png" id="bg_Mist"]
+[ext_resource type="Script" path="res://level.gd" id="1_level"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
 size = Vector2(3648, 120)
 
-[node name="Node2D" type="Node2D" unique_id=1693261953]
+[node name="Level" type="Node2D"]
+script = ExtResource("1_level")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1737795387]
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1681991673]
+[node name="Sky" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.02, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Sky")
+centered = false
+[node name="Forest09" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.1, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest09"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest09")
+centered = false
+[node name="Forest08" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.18, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest08"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest08")
+centered = false
+[node name="Forest07" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.27, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest07"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest07")
+centered = false
+[node name="Forest06" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.36, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest06"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest06")
+centered = false
+[node name="Motes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.44, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(7.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Motes"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Motes")
+centered = false
+[node name="Forest04" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.52, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest04"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest04")
+centered = false
+[node name="Dust" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.62, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(-11.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Dust"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Dust")
+centered = false
+[node name="Bushes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.75, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Bushes"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Bushes")
+centered = false
+[node name="Mist" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.88, 0.08)
+repeat_size = Vector2(1440, 0)
+repeat_times = 4
+autoscroll = Vector2(-18.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Mist"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Mist")
+centered = false
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="World"]
+
+[node name="ColorRect" type="ColorRect" parent="World/Ground"]
 custom_minimum_size = Vector2(3650, 0)
 offset_left = -1825.0
 offset_top = -72.5
 offset_right = 1825.0
 offset_bottom = 52.5
-color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+color = Color(0.07, 0.09, 0.12, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1305504874]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground"]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_454dt")
 
-[node name="Node2D" parent="." unique_id=476216898 instance=ExtResource("2_oi3di")]
-position = Vector2(-26, -625)
+[node name="Enemies" type="Node2D" parent="World"]
 
-[node name="Camera2D" parent="Node2D" index="2" unique_id=1412978775]
-limit_bottom = -50
-
-[node name="Node2D2" type="Node2D" parent="." unique_id=161967842]
-
-[node name="Parallax2D" type="Parallax2D" parent="Node2D2" unique_id=109798689]
-
-[node name="CharacterBody2D" parent="Node2D2" unique_id=470170794 instance=ExtResource("3_oi3di")]
+[node name="Enemy" parent="World/Enemies" instance=ExtResource("3_enemy")]
 position = Vector2(1717, -300)
 
-[editable path="Node2D"]
+[node name="Player" parent="World" instance=ExtResource("2_player")]
+position = Vector2(-26, -200)
+
+[node name="Camera2D" parent="World/Player" index="2"]
+limit_left = -1825
+limit_right = 1825
+limit_bottom = 60
+
+[node name="UI" parent="." instance=ExtResource("4_ui")]
+
+[editable path="World/Player"]

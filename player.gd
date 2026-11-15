@@ -1,6 +1,10 @@
+class_name Player
 extends CharacterBody2D
 
 const RUN_ANIMATION_THRESHOLD := 20.0
+
+signal health_changed(current: int)
+signal died
 
 @export var gravity := 2400.0
 @export var acceleration := 3000.0
@@ -10,11 +14,12 @@ const RUN_ANIMATION_THRESHOLD := 20.0
 @export var jump_strength := 1200.0
 @export var max_speed := 600.0
 
-@export var health := 5
+@export var max_health := 5
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var health: int
 var facing_direction := 1.0
 var is_dead := false
 var _camera_frozen := false
@@ -22,11 +27,15 @@ var _camera_smoothing_enabled := true
 
 
 func _ready() -> void:
+	health = max_health
+
 	_camera_smoothing_enabled = camera_2d.position_smoothing_enabled
 	camera_2d.top_level = true
 	camera_2d.global_position = global_position
 	camera_2d.reset_smoothing()
 	camera_2d.force_update_scroll()
+
+	sprite.animation_finished.connect(_on_animation_finished)
 
 
 func _physics_process(delta: float) -> void:
@@ -106,19 +115,25 @@ func _play(animation_name: StringName) -> void:
 		sprite.play(animation_name)
 
 
+func _on_animation_finished() -> void:
+	if sprite.animation == &"death":
+		died.emit()
+
+
 func take_damage(amount: int) -> void:
 	if is_dead:
 		return
 
-	health -= amount
-	print("Player health: ", health)
+	health = maxi(health - amount, 0)
+	health_changed.emit(health)
 
-	if health <= 0:
+	if health == 0:
 		_die()
 
 
 func _die() -> void:
 	is_dead = true
 	velocity = Vector2.ZERO
-	_play("death")
-	print("Player defeated!")
+	sprite.animation = &"death"
+	sprite.frame = 0
+	sprite.play(&"death")

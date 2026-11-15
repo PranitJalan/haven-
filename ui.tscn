@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8hqvxw2ng7ra"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_ui"]
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_ui")
+
+[node name="Health" type="HBoxContainer" parent="."]
+offset_left = 28.0
+offset_top = 26.0
+offset_right = 400.0
+offset_bottom = 52.0
+theme_override_constants/separation = 9
+
+[node name="EndScreen" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="EndScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.04, 0.06, 0.82)
+
+[node name="Center" type="VBoxContainer" parent="EndScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Title" type="Label" parent="EndScreen/Center"]
+theme_override_font_sizes/font_size = 68
+text = "YOU FELL"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="EndScreen/Center"]
+modulate = Color(0.75, 0.8, 0.85, 1)
+theme_override_font_sizes/font_size = 20
+text = "The haven belongs to the machine."
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="EndScreen/Center"]
+custom_minimum_size = Vector2(230, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Restart"
+
+[node name="Hint" type="Label" parent="EndScreen/Center"]
+modulate = Color(0.55, 0.6, 0.66, 1)
+theme_override_font_sizes/font_size = 16
+text = "or press R"
+horizontal_alignment = 1

@@ -1,4 +1,7 @@
+class_name Enemy
 extends CharacterBody2D
+
+signal died
 
 @export var gravity := 960.0
 @export var acceleration := 200.0
@@ -101,6 +104,7 @@ func _play_once(animation_name: StringName) -> void:
 
 func _on_animation_finished() -> void:
 	if sprite.animation == &"death":
+		died.emit()
 		queue_free()
 	else:
 		_busy = false

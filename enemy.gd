@@ -14,6 +14,11 @@ signal died
 
 @export var health := 5
 
+@export var is_boss := false
+@export var immune_to_melee := false
+@export var body_scale := 1.0
+@export var tint := Color.WHITE
+
 @export var contact_damage := 1
 @export var contact_range := 95.0
 
@@ -22,6 +27,7 @@ signal died
 
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 var direction := 0.0
 var is_dead := false
@@ -31,6 +37,12 @@ var _busy := false
 
 
 func _ready() -> void:
+	if not is_equal_approx(body_scale, 1.0):
+		sprite.scale *= body_scale
+		collision_shape.scale *= body_scale
+
+	sprite.modulate = tint
+
 	shoot_timer.wait_time = shoot_interval
 	shoot_timer.timeout.connect(shoot_projectile)
 	shoot_timer.start()
@@ -155,8 +167,12 @@ func _find_player() -> Node2D:
 	return get_tree().get_first_node_in_group("player") as Node2D
 
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, is_melee := false) -> void:
 	if is_dead:
+		return
+
+	if is_melee and immune_to_melee:
+		_clink()
 		return
 
 	health -= amount
@@ -172,7 +188,15 @@ func _flash() -> void:
 	sprite.modulate = Color(7.0, 7.0, 7.0)
 
 	var tween := create_tween()
-	tween.tween_property(sprite, "modulate", Color.WHITE, 0.25)
+	tween.tween_property(sprite, "modulate", tint, 0.25)
+
+
+# Visual nope for a melee hit that does nothing.
+func _clink() -> void:
+	sprite.modulate = Color(2.2, 2.2, 2.6)
+
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", tint, 0.18)
 
 
 func _die() -> void:

@@ -92,5 +92,5 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and body.has_method("take_damage"):
-		body.call("take_damage", damage)
+		body.call("take_damage", damage, true)
 		player.shake_camera(7.0)

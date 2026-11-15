@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bffs0yqr2jdrx"]
+[gd_scene format=3 uid="uid://bffs0yqr2jdrx"]
 
 [ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
 [ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]

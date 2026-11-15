@@ -23,11 +23,13 @@ signal died
 @export var camera_limit_right := 10000000
 @export var camera_limit_bottom := 10000000
 
-@export var dust_scene: PackedScene
+@export var jump_puff_scene: PackedScene
+@export var land_puff_scene: PackedScene
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shield: Shield = $Shield
+@onready var run_dust: CPUParticles2D = $RunDust
 
 var health: int
 var facing_direction := 1.0
@@ -36,11 +38,14 @@ var is_dead := false
 var _invincible_remaining := 0.0
 var _shake_strength := 0.0
 var _was_grounded := true
+var _air_jumps := 0
 var _camera_frozen := false
 var _camera_smoothing_enabled := true
 
 
 func _ready() -> void:
+	max_health += Game.bonus_health()
+	_air_jumps = 1 if Game.has_double_jump else 0
 	health = max_health
 
 	_camera_smoothing_enabled = camera_2d.position_smoothing_enabled
@@ -63,13 +68,19 @@ func _physics_process(delta: float) -> void:
 	_invincible_remaining = maxf(_invincible_remaining - delta, 0.0)
 
 	if is_dead:
+		run_dust.emitting = false
 		_apply_death_physics(delta)
 		_update_camera(camera_center)
 		_update_shake(delta)
 		return
 
 	var direction := Input.get_axis("left", "right")
-	var jumping := grounded and Input.is_action_just_pressed("jump")
+	var wants_jump := Input.is_action_just_pressed("jump")
+	var air_jump := wants_jump and not grounded and _air_jumps > 0
+	var jumping := wants_jump and (grounded or air_jump)
+
+	if air_jump:
+		_air_jumps -= 1
 
 	if not is_zero_approx(direction):
 		facing_direction = signf(direction)
@@ -90,6 +101,10 @@ func _physics_process(delta: float) -> void:
 	if jumping:
 		velocity.y = -jump_strength
 		_squash(Vector2(0.82, 1.2))
+		_spawn_puff(jump_puff_scene)
+
+		if air_jump:
+			shake_camera(2.0)
 	elif not grounded:
 		velocity.y += gravity * delta
 
@@ -98,7 +113,15 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and not _was_grounded:
 		_land()
 
+	if is_on_floor():
+		_air_jumps = 1 if Game.has_double_jump else 0
+
 	_was_grounded = is_on_floor()
+
+	run_dust.emitting = (
+		is_on_floor()
+		and absf(velocity.x) > 150.0
+	)
 
 	_update_camera(camera_center)
 	_update_shake(delta)
@@ -117,17 +140,26 @@ func _apply_death_physics(delta: float) -> void:
 func _land() -> void:
 	_squash(Vector2(1.25, 0.76))
 	shake_camera(3.0)
+	_spawn_puff(land_puff_scene)
 
-	if dust_scene == null:
+
+func _spawn_puff(scene: PackedScene) -> void:
+	if scene == null:
 		return
 
-	var dust := dust_scene.instantiate() as Node2D
+	var puff := scene.instantiate() as Node2D
 
-	if dust == null:
+	if puff == null:
 		return
 
-	get_tree().current_scene.add_child(dust)
-	dust.global_position = global_position + Vector2(0, 55)
+	get_tree().current_scene.add_child(puff)
+	puff.global_position = global_position + Vector2(0, 55)
+
+	get_tree().create_timer(1.6).timeout.connect(
+		func() -> void:
+			if is_instance_valid(puff):
+				puff.queue_free()
+	)
 
 
 func _squash(amount: Vector2) -> void:
@@ -141,6 +173,12 @@ func _squash(amount: Vector2) -> void:
 
 func refill_shield() -> void:
 	shield.refill()
+
+
+func heal_full() -> void:
+	health = max_health
+	health_changed.emit(health)
+	_flash()
 
 
 func shake_camera(strength: float) -> void:

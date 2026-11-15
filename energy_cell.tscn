@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://pickup.gd" id="1_pickup"]
+[ext_resource type="Texture2D" path="res://Particles/glow.png" id="3_glow"]
+[ext_resource type="Texture2D" path="res://Items/orb.png" id="2_orb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cell"]
-radius = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_orb"]
+radius = 24.0
 
 [node name="EnergyCell" type="Area2D" groups=["pickups"]]
 collision_layer = 16
@@ -11,5 +13,16 @@ collision_mask = 2
 script = ExtResource("1_pickup")
 kind = 1
 
+[node name="Glow" type="Sprite2D" parent="."]
+texture_filter = 1
+modulate = Color(0.4, 0.85, 1, 0.6)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("3_glow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("2_orb")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_cell")
+shape = SubResource("CircleShape2D_orb")

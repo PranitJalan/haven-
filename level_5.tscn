@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3]
+[gd_scene load_steps=34 format=3]
 
 [ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
 [ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
@@ -26,6 +26,9 @@
 
 [sub_resource type="RectangleShape2D" id="GroundShape"]
 size = Vector2(3648, 120)
+
+[sub_resource type="RectangleShape2D" id="WallShape"]
+size = Vector2(80, 2400)
 
 [sub_resource type="RectangleShape2D" id="PS0"]
 size = Vector2(185, 32)
@@ -229,6 +232,20 @@ shape = SubResource("GroundShape")
 
 [node name="Motes" parent="World" instance=ExtResource("11_motes")]
 position = Vector2(0, -330)
+
+[node name="WallLeft" type="StaticBody2D" parent="World"]
+position = Vector2(-1865, -1100)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WallLeft"]
+shape = SubResource("WallShape")
+
+[node name="WallRight" type="StaticBody2D" parent="World"]
+position = Vector2(1865, -1100)
+collision_layer = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/WallRight"]
+shape = SubResource("WallShape")
 
 [node name="Platforms" type="Node2D" parent="World"]
 

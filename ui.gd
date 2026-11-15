@@ -1,23 +1,30 @@
 extends CanvasLayer
 
-const PIP_SIZE := Vector2(26, 26)
-const PIP_FULL := Color(0.35, 0.85, 1.0)
-const PIP_EMPTY := Color(0.13, 0.17, 0.22)
-const WIN_COLOR := Color(0.45, 0.95, 0.8)
+const WIN_COLOR := Color(0.5, 0.95, 0.82)
 const LOSE_COLOR := Color(0.95, 0.35, 0.4)
 
 signal restart_requested
+signal menu_requested
 
-@onready var pips: HBoxContainer = $Health
+@onready var health_bar: Control = $HealthBar
 @onready var coins: Label = $Coins
+@onready var level_label: Label = $LevelTitle
+@onready var story_card: Label = $StoryCard
+@onready var banner: Label = $Banner
 @onready var end_screen: Control = $EndScreen
 @onready var title: Label = $EndScreen/Center/Title
-@onready var restart_button: Button = $EndScreen/Center/RestartButton
+@onready var body: Label = $EndScreen/Center/Body
+@onready var action_button: Button = $EndScreen/Center/ActionButton
+@onready var hint: Label = $EndScreen/Center/Hint
+
+var _returns_to_menu := false
 
 
 func _ready() -> void:
 	end_screen.hide()
-	restart_button.pressed.connect(func() -> void: restart_requested.emit())
+	story_card.modulate.a = 0.0
+	banner.modulate.a = 0.0
+	action_button.pressed.connect(_on_button_pressed)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,32 +32,68 @@ func _unhandled_input(event: InputEvent) -> void:
 		restart_requested.emit()
 
 
-func build_health(max_health: int) -> void:
-	for child in pips.get_children():
-		pips.remove_child(child)
-		child.free()
+func _on_button_pressed() -> void:
+	if _returns_to_menu:
+		menu_requested.emit()
+	else:
+		restart_requested.emit()
 
-	for i in max_health:
-		var pip := ColorRect.new()
-		pip.custom_minimum_size = PIP_SIZE
-		pip.color = PIP_FULL
-		pips.add_child(pip)
+
+func set_level_title(text: String) -> void:
+	level_label.text = text
+
+
+func build_health(max_health: int) -> void:
+	health_bar.setup(max_health)
 
 
 func set_health(current: int) -> void:
-	var children := pips.get_children()
-
-	for i in children.size():
-		var pip := children[i] as ColorRect
-		pip.color = PIP_FULL if i < current else PIP_EMPTY
+	health_bar.set_health(current)
 
 
 func set_coins(collected: int, total: int) -> void:
 	coins.text = "%d / %d" % [collected, total]
 
 
-func show_result(won: bool) -> void:
-	title.text = "You Win" if won else "You Lost"
-	title.modulate = WIN_COLOR if won else LOSE_COLOR
+# Story beat at the start of a level: fades in, holds, fades out.
+func show_story(text: String) -> void:
+	if text.is_empty():
+		return
+
+	story_card.text = text
+
+	var tween := create_tween()
+	tween.tween_property(story_card, "modulate:a", 1.0, 0.7)
+	tween.tween_interval(3.8)
+	tween.tween_property(story_card, "modulate:a", 0.0, 0.9)
+
+
+func show_banner(text: String) -> void:
+	banner.text = text
+
+	var tween := create_tween()
+	tween.tween_property(banner, "modulate:a", 1.0, 0.35)
+	tween.tween_interval(2.0)
+	tween.tween_property(banner, "modulate:a", 0.0, 0.7)
+
+
+func show_lost() -> void:
+	_returns_to_menu = false
+	title.text = "You Lost"
+	title.modulate = LOSE_COLOR
+	body.text = ""
+	action_button.text = "Retry"
+	hint.text = "or press R"
 	end_screen.show()
-	restart_button.grab_focus()
+	action_button.grab_focus()
+
+
+func show_ending(text: String) -> void:
+	_returns_to_menu = true
+	title.text = "You Win"
+	title.modulate = WIN_COLOR
+	body.text = text
+	action_button.text = "Return to the grove"
+	hint.text = ""
+	end_screen.show()
+	action_button.grab_focus()

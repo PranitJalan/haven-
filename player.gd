@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var jump_strength := 1200.0
 @export var max_speed := 600.0
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var icon: AnimatedSprite2D = $Icon
 
 var _camera_frozen := false
 var _camera_smoothing_enabled := true
@@ -38,10 +39,21 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -jump_strength
 	elif not grounded:
 		velocity.y += gravity * delta
-
+	
+	
 	move_and_slide()
 	_update_camera(camera_center)
-
+func animate(direction):
+	if direction == 0:
+		icon.play("default")
+	else:
+		if direction == -1:
+			icon.flip_h = true
+		else:
+			icon.flip_h = false
+		icon.play("run")
+	
+	
 func _update_camera(previous_center: Vector2) -> void:
 	# Check the floor after moving so jumps, ledges, and landings update immediately.
 	if is_on_floor():

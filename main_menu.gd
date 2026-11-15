@@ -23,4 +23,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _start() -> void:
-	get_tree().change_scene_to_file("res://level_1.tscn")
+	get_tree().change_scene_to_file("res://Level1_ForgottenForest.tscn")

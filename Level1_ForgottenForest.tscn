@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
 [ext_resource type="PackedScene" path="res://coin.tscn" id="5_coin"]
 [ext_resource type="PackedScene" path="res://energy_cell.tscn" id="6_cell"]
+[ext_resource type="PackedScene" path="res://portal.tscn" id="7_portal"]
+[ext_resource type="PackedScene" path="res://level_2.tscn" id="8_next"]
 [ext_resource type="Script" path="res://forest/terrain_piece.gd" id="s_terrain_piece"]
 [ext_resource type="Script" path="res://forest/glow_plant.gd" id="s_glow_plant"]
 [ext_resource type="Script" path="res://forest/bounce_shroom.gd" id="s_bounce_shroom"]
@@ -47,6 +49,9 @@ size = Vector2(200, 6000)
 
 [node name="Level1_ForgottenForest" type="Node2D"]
 script = ExtResource("1_level")
+level_title = "Level 1  ·  The Forgotten Forest"
+level_number = 1
+next_level = ExtResource("8_next")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -1288,6 +1293,9 @@ size = 760.0
 breathe = 0.06
 
 [node name="PortalMarker" type="Marker2D" parent="World"]
+position = Vector2(12450, -260)
+
+[node name="Portal" parent="World" instance=ExtResource("7_portal")]
 position = Vector2(12450, -260)
 
 [node name="Bounds" type="StaticBody2D" parent="World"]

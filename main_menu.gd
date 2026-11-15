@@ -8,6 +8,7 @@ extends Control
 
 func _ready() -> void:
 	Game.reset()
+	Music.play_forest()
 	intro.text = Story.INTRO
 	start_button.pressed.connect(_start)
 	credits_button.pressed.connect(

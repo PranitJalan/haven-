@@ -24,6 +24,11 @@ var _respawn_position := Vector2.ZERO
 func _ready() -> void:
 	_respawn_position = player.global_position
 
+	if is_boss_level:
+		Music.play_warden()
+	else:
+		Music.play_forest()
+
 	ui.set_level_title(level_title)
 	ui.build_health(player.max_health)
 	ui.set_health(player.health)

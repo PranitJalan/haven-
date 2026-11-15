@@ -1,0 +1,173 @@
+[gd_scene load_steps=30 format=3 uid="uid://ckudr8chj1kgo"]
+
+[ext_resource type="Script" uid="uid://80kl10p8d3vr" path="res://player.gd" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://dguuo2vdevl1a" path="res://Hero-sprites/Idle_000.png" id="idle_0"]
+[ext_resource type="Texture2D" uid="uid://c3pg3fcokrcwb" path="res://Hero-sprites/Idle_001.png" id="idle_1"]
+[ext_resource type="Texture2D" uid="uid://dq23aub0le5c" path="res://Hero-sprites/Idle_002.png" id="idle_2"]
+[ext_resource type="Texture2D" uid="uid://badptu12iqf81" path="res://Hero-sprites/Idle_003.png" id="idle_3"]
+[ext_resource type="Texture2D" uid="uid://cbnxgs4y5lajj" path="res://Hero-sprites/Idle_004.png" id="idle_4"]
+[ext_resource type="Texture2D" uid="uid://bq4wwe8lf2xqo" path="res://Hero-sprites/Idle_005.png" id="idle_5"]
+[ext_resource type="Texture2D" uid="uid://bpc2oux63qmmt" path="res://Hero-sprites/run_000.png" id="run_0"]
+[ext_resource type="Texture2D" uid="uid://g6ing1v2vwhk" path="res://Hero-sprites/run_001.png" id="run_1"]
+[ext_resource type="Texture2D" uid="uid://dqhc0g2c8x1bk" path="res://Hero-sprites/run_002.png" id="run_2"]
+[ext_resource type="Texture2D" uid="uid://b0uk5vtgcg0il" path="res://Hero-sprites/run_003.png" id="run_3"]
+[ext_resource type="Texture2D" uid="uid://bk3gk52eibtha" path="res://Hero-sprites/run_004.png" id="run_4"]
+[ext_resource type="Texture2D" uid="uid://cwiiwdbuy5hss" path="res://Hero-sprites/run_005.png" id="run_5"]
+[ext_resource type="Texture2D" uid="uid://db74fwo1dllgl" path="res://Hero-sprites/jump_000.png" id="jump_0"]
+[ext_resource type="Texture2D" uid="uid://crnofa2jq10gh" path="res://Hero-sprites/jump_001.png" id="jump_1"]
+[ext_resource type="Texture2D" uid="uid://nmd0smjh5d33" path="res://Hero-sprites/jump_002.png" id="jump_2"]
+[ext_resource type="Texture2D" uid="uid://dfab4eqkaaaw6" path="res://Hero-sprites/jump_003.png" id="jump_3"]
+[ext_resource type="Texture2D" uid="uid://chwe3mhikcd13" path="res://Hero-sprites/jump_004.png" id="jump_4"]
+[ext_resource type="Texture2D" uid="uid://hoxbvdavqqjd" path="res://Hero-sprites/jump_005.png" id="jump_5"]
+[ext_resource type="Texture2D" uid="uid://dporki5ddlh40" path="res://Hero-sprites/Death_000.png" id="death_0"]
+[ext_resource type="Texture2D" uid="uid://dnjaaaf0llms6" path="res://Hero-sprites/Death_001.png" id="death_1"]
+[ext_resource type="Texture2D" uid="uid://bcnsrmrcmk3po" path="res://Hero-sprites/Death_002.png" id="death_2"]
+[ext_resource type="Texture2D" uid="uid://dh2an0iodvgss" path="res://Hero-sprites/Death_003.png" id="death_3"]
+[ext_resource type="Texture2D" uid="uid://3a5kcn4pkfsf" path="res://Hero-sprites/Death_004.png" id="death_4"]
+[ext_resource type="Texture2D" uid="uid://bquidrh4kybyi" path="res://Hero-sprites/Death_005.png" id="death_5"]
+[ext_resource type="Script" uid="uid://i7r20qrcc1g1" path="res://Shield.gd" id="2_shield"]
+[ext_resource type="Script" path="res://Katana.gd" id="3_katana"]
+[ext_resource type="PackedScene" path="res://dust.tscn" id="4_dust"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hero"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("idle_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("run_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("jump_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_5")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("death_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_5")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
+size = Vector2(118, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s87yt"]
+size = Vector2(52, 172)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_katana"]
+radius = 88.0
+
+[node name="Node2D2" type="CharacterBody2D" unique_id=476216898 groups=["player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_player")
+dust_scene = ExtResource("4_dust")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=7532827]
+scale = Vector2(0.55, 0.55)
+sprite_frames = SubResource("SpriteFrames_hero")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=152917556]
+shape = SubResource("RectangleShape2D_454dt")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1412978775]
+zoom = Vector2(0.6, 0.6)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="Shield" type="Area2D" parent="." unique_id=507607914]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_shield")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" unique_id=1086619935]
+position = Vector2(71, 0)
+shape = SubResource("RectangleShape2D_s87yt")
+
+[node name="Katana" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("3_katana")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Katana"]
+position = Vector2(78, 0)
+shape = SubResource("CircleShape2D_katana")

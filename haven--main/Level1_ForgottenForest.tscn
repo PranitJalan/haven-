@@ -1,0 +1,1450 @@
+[gd_scene load_steps=37 format=3 uid="uid://bffs0yqr2jdrx"]
+
+[ext_resource type="Texture2D" uid="uid://whdjnnmeobba" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/10_Sky.png" id="bg_Sky"]
+[ext_resource type="Texture2D" uid="uid://dhteshmg2s3qm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/09_Forest.png" id="bg_Forest09"]
+[ext_resource type="Texture2D" uid="uid://c543q50co1yd4" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/08_Forest.png" id="bg_Forest08"]
+[ext_resource type="Texture2D" uid="uid://bt2jkkak0ksga" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/07_Forest.png" id="bg_Forest07"]
+[ext_resource type="Texture2D" uid="uid://caigb8kr3a2fy" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/06_Forest.png" id="bg_Forest06"]
+[ext_resource type="Texture2D" uid="uid://d1jldl171r1vm" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/05_Particles.png" id="bg_Motes"]
+[ext_resource type="Texture2D" uid="uid://gtvtpxyjptta" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/04_Forest.png" id="bg_Forest04"]
+[ext_resource type="Texture2D" uid="uid://daunrkn3trg88" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/03_Particles.png" id="bg_Dust"]
+[ext_resource type="Texture2D" uid="uid://wlujffyam4eh" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/02_Bushes.png" id="bg_Bushes"]
+[ext_resource type="Texture2D" uid="uid://56sj4ve07ou1" path="res://Parallax Forest Background (Seamless)/Parallax Forest Background - Blue/01_Mist.png" id="bg_Mist"]
+[ext_resource type="Script" path="res://level.gd" id="1_level"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://b8hqvxw2ng7ra" path="res://ui.tscn" id="4_ui"]
+[ext_resource type="PackedScene" path="res://coin.tscn" id="5_coin"]
+[ext_resource type="PackedScene" path="res://energy_cell.tscn" id="6_cell"]
+[ext_resource type="Script" path="res://forest/terrain_piece.gd" id="s_terrain_piece"]
+[ext_resource type="Script" path="res://forest/glow_plant.gd" id="s_glow_plant"]
+[ext_resource type="Script" path="res://forest/bounce_shroom.gd" id="s_bounce_shroom"]
+[ext_resource type="Script" path="res://forest/hidden_area.gd" id="s_hidden_area"]
+[ext_resource type="Script" path="res://forest/rune.gd" id="s_rune"]
+[ext_resource type="Script" path="res://forest/ruins_gate.gd" id="s_ruins_gate"]
+[ext_resource type="Script" path="res://forest/ruins_puzzle.gd" id="s_ruins_puzzle"]
+[ext_resource type="Script" path="res://forest/checkpoint.gd" id="s_checkpoint"]
+[ext_resource type="Script" path="res://forest/kill_zone.gd" id="s_kill_zone"]
+[ext_resource type="Script" path="res://forest/tree_decor.gd" id="s_tree_decor"]
+[ext_resource type="Script" path="res://forest/waterfall.gd" id="s_waterfall"]
+[ext_resource type="Script" path="res://forest/pond.gd" id="s_pond"]
+[ext_resource type="Script" path="res://forest/ruin_decor.gd" id="s_ruin_decor"]
+[ext_resource type="Script" path="res://forest/atmosphere.gd" id="s_atmosphere"]
+[ext_resource type="Script" path="res://forest/foreground_layer.gd" id="s_foreground_layer"]
+[ext_resource type="Script" path="res://forest/ambient_light.gd" id="s_ambient_light"]
+
+[sub_resource type="RectangleShape2D" id="rect_0"]
+size = Vector2(2600, 200)
+
+[sub_resource type="RectangleShape2D" id="rect_1"]
+size = Vector2(15000, 300)
+
+[sub_resource type="RectangleShape2D" id="rect_2"]
+size = Vector2(200, 6000)
+
+[sub_resource type="RectangleShape2D" id="rect_3"]
+size = Vector2(200, 6000)
+
+[node name="Level1_ForgottenForest" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sky" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Sky"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Sky")
+centered = false
+
+[node name="Forest09" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest09"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest09")
+centered = false
+
+[node name="Forest08" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest08"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest08")
+centered = false
+
+[node name="Forest07" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest07"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest07")
+centered = false
+
+[node name="Forest06" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest06"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest06")
+centered = false
+
+[node name="Motes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.58, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(7.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Motes"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Motes")
+centered = false
+
+[node name="Forest04" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.66, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest04"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Forest04")
+centered = false
+
+[node name="Dust" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.74, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(-11.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Dust"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Dust")
+centered = false
+
+[node name="Bushes" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.84, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(0.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Bushes"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Bushes")
+centered = false
+
+[node name="Mist" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.92, 1)
+repeat_size = Vector2(1440, 0)
+repeat_times = 20
+autoscroll = Vector2(-18.0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Mist"]
+texture_filter = 1
+position = Vector2(0, -162)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("bg_Mist")
+centered = false
+
+[node name="Tint" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.07, 0.15, 0.4)
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="BackDecor" type="Node2D" parent="World"]
+z_index = -10
+
+[node name="Water" type="Node2D" parent="World"]
+
+[node name="Fog" type="Node2D" parent="World"]
+z_index = -2
+
+[node name="Terrain" type="Node2D" parent="World"]
+
+[node name="Branches" type="Node2D" parent="World"]
+
+[node name="Flora" type="Node2D" parent="World"]
+
+[node name="Puzzle" type="Node2D" parent="World"]
+
+[node name="Hidden" type="Node2D" parent="World"]
+
+[node name="Checkpoints" type="Node2D" parent="World"]
+
+[node name="KillZones" type="Node2D" parent="World"]
+
+[node name="Pickups" type="Node2D" parent="World"]
+
+[node name="Enemies" type="Node2D" parent="World"]
+
+[node name="ForestEntrance" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 8975
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/ForestEntrance"]
+polygon = PackedVector2Array(-600, 0, -527.778, -0.880836, -455.556, -1.74575, -383.333, 0.754672, -311.111, -2.13782, -238.889, 0.17941, -166.667, -0.671555, -94.4444, -2.21001, -22.2222, 0.0371787, 50, -2.31252, 122.222, -0.331772, 194.444, -2.15072, 266.667, -2.04643, 338.889, -0.377404, 411.111, 1.63426, 483.333, -1.88099, 555.556, -1.38381, 627.778, 0.637166, 700, 0, 775, -5.26146, 850, -14.6145, 925, -23.0166, 1000, -30, 1075, -42.6187, 1150, -62.2671, 1225, -73.2077, 1300, -90, 1375, -91.052, 1450, -91.7787, 1525, -91.911, 1600, -90, 1683.33, -75.9576, 1766.67, -58.4194, 1850, -45, 1920, -37.5964, 1990, -26.592, 2060, -17.3054, 2130, -9.63801, 2200, 0, 2200, 1000, -600, 1000)
+
+[node name="ForgottenGrove" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 1272
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/ForgottenGrove"]
+polygon = PackedVector2Array(4700, -330, 4780, -328.939, 4860, -329.678, 4940, -329.405, 5020, -330.018, 5100, -330, 5183.33, -303.175, 5266.67, -275.281, 5350, -250, 5433.33, -226.839, 5516.67, -201.216, 5600, -180, 5670, -180.692, 5740, -181.258, 5810, -181.601, 5880, -178.601, 5950, -182.091, 6020, -180.999, 6090, -180.024, 6160, -180.783, 6230, -180.256, 6300, -180, 6383.33, -202.789, 6466.67, -228.801, 6550, -250, 6633.33, -266.607, 6716.67, -285.009, 6800, -300, 6875, -300.79, 6950, -297.834, 7025, -300.392, 7100, -300, 7100, 1000, 4700, 1000)
+
+[node name="AncientRuinsAndGuardian" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 862
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.5
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/AncientRuinsAndGuardian"]
+polygon = PackedVector2Array(7100, -300, 7171.88, -298.677, 7243.75, -299.635, 7315.62, -298.123, 7387.5, -300.931, 7459.38, -299.024, 7531.25, -299.528, 7603.12, -299.601, 7675, -300.219, 7746.88, -298.3, 7818.75, -297.777, 7890.62, -300.13, 7962.5, -299.179, 8034.38, -302.197, 8106.25, -298.993, 8178.12, -299.264, 8250, -300, 8250, 60, 8328.57, 62.4655, 8407.14, 61.6096, 8485.71, 58.923, 8564.29, 59.429, 8642.86, 60.8433, 8721.43, 57.6128, 8800, 60, 8800, -300, 8870.83, -300.192, 8941.67, -301.66, 9012.5, -301.915, 9083.33, -302.205, 9154.17, -298.659, 9225, -301.853, 9295.83, -301.262, 9366.67, -300.545, 9437.5, -298.143, 9508.33, -302.097, 9579.17, -300.254, 9650, -300, 9725, -274.753, 9800, -248.083, 9875, -223.404, 9950, -200, 10020.7, -198.18, 10091.4, -201.108, 10162.1, -200.424, 10232.8, -200.706, 10303.4, -198.079, 10374.1, -197.711, 10444.8, -201.745, 10515.5, -201.619, 10586.2, -201.34, 10656.9, -201.333, 10727.6, -200.075, 10798.3, -199.554, 10869, -201.186, 10939.7, -202.48, 11010.3, -200.405, 11081, -200.654, 11151.7, -199.668, 11222.4, -197.735, 11293.1, -199.048, 11363.8, -199.923, 11434.5, -199.412, 11505.2, -199.119, 11575.9, -202.23, 11646.6, -198.002, 11717.2, -198.6, 11787.9, -198.127, 11858.6, -198.511, 11929.3, -200.538, 12000, -200, 12075, -230.505, 12150, -260, 12225, -261.982, 12300, -259.329, 12375, -262.189, 12450, -262.163, 12525, -261.456, 12600, -261.688, 12675, -260.8, 12750, -260, 12750, 1000, 7100, 1000)
+
+[node name="HiddenLedge1" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 3408
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/HiddenLedge1"]
+polygon = PackedVector2Array(1560, -480, 1622.86, -481.193, 1685.71, -479.8, 1748.57, -479.89, 1811.43, -478.653, 1874.29, -479.659, 1937.14, -481.289, 2000, -480, 1992, -412.5, 1940, -345, 1780, -330, 1620, -345, 1568, -412.5)
+
+[node name="HiddenLedge2" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 5967
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/HiddenLedge2"]
+polygon = PackedVector2Array(3560, -430, 3628, -429.658, 3696, -431.054, 3764, -430.743, 3832, -430.458, 3900, -430, 3892, -371.5, 3840, -313, 3730, -300, 3620, -313, 3568, -371.5)
+
+[node name="HiddenLedge3" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 5110
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/HiddenLedge3"]
+polygon = PackedVector2Array(5560, -720, 5626.67, -720.078, 5693.33, -721.154, 5760, -720.036, 5826.67, -718.567, 5893.33, -720.059, 5960, -720, 5952, -657, 5900, -594, 5760, -580, 5620, -594, 5568, -657)
+
+[node name="HiddenLedge4" type="StaticBody2D" parent="World/Terrain"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 2646
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Terrain/HiddenLedge4"]
+polygon = PackedVector2Array(6050, -560, 6120, -561.242, 6190, -561.193, 6260, -560.472, 6330, -560.706, 6400, -560, 6392, -501.5, 6340, -443, 6225, -430, 6110, -443, 6058, -501.5)
+
+[node name="B1" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 5927
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/B1"]
+polygon = PackedVector2Array(900, -250, 965, -249.951, 1030, -250.884, 1095, -248.644, 1160, -250, 1152, -229.3, 1100, -208.6, 1030, -204, 960, -208.6, 908, -229.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="B2" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 8653
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/B2"]
+polygon = PackedVector2Array(1250, -400, 1312.5, -401.06, 1375, -399.87, 1437.5, -401.419, 1500, -400, 1492, -379.3, 1440, -358.6, 1375, -354, 1310, -358.6, 1258, -379.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="Root1" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 8494
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/Root1"]
+polygon = PackedVector2Array(2270, -40, 2330, -40.6057, 2390, -39.5712, 2450, -41.227, 2510, -38.9637, 2570, -40, 2562, -19.3, 2510, 1.4, 2420, 6, 2330, 1.4, 2278, -19.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="Root2" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 8726
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/Root2"]
+polygon = PackedVector2Array(2780, -130, 2840, -130.4, 2900, -130.999, 2960, -129.184, 3020, -130, 3012, -109.3, 2960, -88.6, 2900, -84, 2840, -88.6, 2788, -109.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="Root3" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 3198
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/Root3"]
+polygon = PackedVector2Array(3180, -50, 3240, -49.8753, 3300, -49.9919, 3360, -49.5907, 3420, -49.6603, 3480, -50, 3472, -29.3, 3420, -8.6, 3330, -4, 3240, -8.6, 3188, -29.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="Root4" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 3715
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/Root4"]
+polygon = PackedVector2Array(3640, -190, 3700, -189.082, 3760, -189.045, 3820, -189.28, 3880, -190, 3872, -169.3, 3820, -148.6, 3760, -144, 3700, -148.6, 3648, -169.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="Root5" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 475
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/Root5"]
+polygon = PackedVector2Array(4040, -290, 4113.33, -290.9, 4186.67, -290.022, 4260, -290, 4252, -269.3, 4200, -248.6, 4150, -244, 4100, -248.6, 4048, -269.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="Root6" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 7738
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/Root6"]
+polygon = PackedVector2Array(4390, -340, 4456.67, -338.531, 4523.33, -339.13, 4590, -340, 4582, -319.3, 4530, -298.6, 4490, -294, 4450, -298.6, 4398, -319.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="G1" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 7328
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/G1"]
+polygon = PackedVector2Array(4900, -560, 4960, -560.722, 5020, -559.422, 5080, -558.63, 5140, -560, 5132, -539.3, 5080, -518.6, 5020, -514, 4960, -518.6, 4908, -539.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="G2" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 5727
+body_top = Color(0.13, 0.17, 0.21, 1.0)
+vines = true
+grass_amount = 0.8
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/G2"]
+polygon = PackedVector2Array(5300, -690, 5366.67, -689.074, 5433.33, -689.331, 5500, -690, 5492, -669.3, 5440, -648.6, 5400, -644, 5360, -648.6, 5308, -669.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="RB1" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 3613
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/RB1"]
+polygon = PackedVector2Array(7650, -470, 7716.67, -468.635, 7783.33, -470.406, 7850, -470, 7842, -449.3, 7790, -428.6, 7750, -424, 7710, -428.6, 7658, -449.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="RB2" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 5534
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/RB2"]
+polygon = PackedVector2Array(7900, -620, 7966.67, -621.194, 8033.33, -620.09, 8100, -620, 8092, -599.3, 8040, -578.6, 8000, -574, 7960, -578.6, 7908, -599.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="RB3" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 9999
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/RB3"]
+polygon = PackedVector2Array(7650, -770, 7716.67, -770.887, 7783.33, -769.628, 7850, -770, 7842, -749.3, 7790, -728.6, 7750, -724, 7710, -728.6, 7658, -749.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="CY1" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 7856
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/CY1"]
+polygon = PackedVector2Array(8330, -110, 8415, -108.979, 8500, -110, 8492, -89.3, 8440, -68.6, 8415, -64, 8390, -68.6, 8338, -89.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="CY2" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 1390
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/CY2"]
+polygon = PackedVector2Array(8560, -230, 8620, -228.772, 8680, -230.468, 8740, -230, 8732, -209.3, 8680, -188.6, 8650, -184, 8620, -188.6, 8568, -209.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="A1" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 3266
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/A1"]
+polygon = PackedVector2Array(10500, -400, 10570, -398.996, 10640, -401.14, 10710, -400.334, 10780, -399.366, 10850, -400, 10842, -379.3, 10790, -358.6, 10675, -354, 10560, -358.6, 10508, -379.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="A2" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 6486
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/A2"]
+polygon = PackedVector2Array(11150, -440, 11220, -440.066, 11290, -440.964, 11360, -439.133, 11430, -440.502, 11500, -440, 11492, -419.3, 11440, -398.6, 11325, -394, 11210, -398.6, 11158, -419.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="A3" type="StaticBody2D" parent="World/Branches"]
+script = ExtResource("s_terrain_piece")
+collision_layer = 1
+seed_value = 1392
+body_top = Color(0.16, 0.21, 0.27, 1.0)
+rim = Color(0.65, 0.88, 1.0, 1.0)
+grass = Color(0.35, 0.62, 0.64, 1.0)
+grass_amount = 0.8
+vines = true
+
+[node name="Collision" type="CollisionPolygon2D" parent="World/Branches/A3"]
+polygon = PackedVector2Array(11800, -380, 11866.7, -380.111, 11933.3, -379.27, 12000, -380, 11992, -359.3, 11940, -338.6, 11900, -334, 11860, -338.6, 11808, -359.3)
+one_way_collision = true
+one_way_collision_margin = 8.0
+
+[node name="Tree1" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(-135, 30)
+seed_value = 452
+trunk_width = 150
+tree_height = 1287
+lean = 0.14793370692515004
+
+[node name="Tree2" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(238, 30)
+seed_value = 2395
+trunk_width = 205
+tree_height = 1663
+lean = -0.010393835291634568
+
+[node name="Tree3" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(876, 12.4)
+seed_value = 5742
+trunk_width = 206
+tree_height = 1442
+lean = 0.04718048782080597
+
+[node name="Tree4" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(1279, -55.8)
+seed_value = 234
+trunk_width = 200
+tree_height = 1480
+lean = -0.11070484439716488
+
+[node name="Tree5" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(1964, -0.342857)
+seed_value = 2282
+trunk_width = 222
+tree_height = 1532
+lean = -0.11916838394124574
+
+[node name="Tree6" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(2150, 20)
+seed_value = 7108
+trunk_width = 240
+tree_height = 1700
+
+[node name="Tree7" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(4780, -300)
+seed_value = 3192
+trunk_width = 240
+tree_height = 1700
+
+[node name="Tree8" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(4704, -300)
+seed_value = 8212
+trunk_width = 133
+tree_height = 1328
+lean = -0.08616606229625647
+
+[node name="Tree9" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(5181, -274.08)
+seed_value = 8919
+trunk_width = 227
+tree_height = 1500
+lean = -0.05220320762835863
+
+[node name="Tree10" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(5697, -150)
+seed_value = 5797
+trunk_width = 146
+tree_height = 1231
+lean = 0.12300511689466695
+
+[node name="Tree11" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(6177, -150)
+seed_value = 8467
+trunk_width = 214
+tree_height = 1498
+lean = 0.09451410972542337
+
+[node name="Tree12" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(6637, -237.4)
+seed_value = 8578
+trunk_width = 194
+tree_height = 1266
+lean = 0.009547488730780151
+
+[node name="Tree13" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(11900, -170)
+seed_value = 8365
+trunk_width = 250
+tree_height = 1600
+
+[node name="Tree14" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_tree_decor")
+position = Vector2(12500, -230)
+seed_value = 307
+trunk_width = 250
+tree_height = 1600
+
+[node name="Ruin1" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(7250, -300)
+z_index = 3
+seed_value = 894
+height = 900
+width = 130
+
+[node name="Ruin2" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(7500, -300)
+z_index = 3
+seed_value = 451
+height = 520
+width = 110
+
+[node name="Ruin3" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(8000, -300)
+z_index = 3
+seed_value = 796
+height = 760
+width = 120
+
+[node name="Ruin4" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(8450, 60)
+z_index = 3
+seed_value = 188
+height = 900
+width = 120
+
+[node name="Ruin5" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(9300, -300)
+z_index = 3
+seed_value = 624
+kind = 1
+height = 820
+width = 120
+span = 330
+
+[node name="Ruin6" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(9800, -300)
+z_index = 3
+seed_value = 5
+height = 620
+width = 110
+
+[node name="Ruin7" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(10200, -200)
+z_index = 3
+seed_value = 795
+height = 720
+width = 120
+
+[node name="Ruin8" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_ruin_decor")
+position = Vector2(11700, -200)
+z_index = 3
+seed_value = 819
+height = 840
+width = 130
+
+[node name="Waterfall1" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_waterfall")
+position = Vector2(1750, -63)
+z_index = 2
+width = 150
+height = 1100
+
+[node name="Waterfall2" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_waterfall")
+position = Vector2(3330, 520)
+z_index = 2
+width = 170
+height = 1700
+
+[node name="Waterfall3" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_waterfall")
+position = Vector2(5880, -215)
+z_index = 2
+width = 160
+height = 1000
+
+[node name="Waterfall4" type="Node2D" parent="World/BackDecor"]
+script = ExtResource("s_waterfall")
+position = Vector2(8340, 60)
+z_index = 2
+width = 130
+height = 1200
+
+[node name="Pond" type="Node2D" parent="World/Water"]
+script = ExtResource("s_pond")
+position = Vector2(5640, -222)
+size = Vector2(660, 42)
+
+[node name="AbyssFog" type="Polygon2D" parent="World/Fog"]
+polygon = PackedVector2Array(2150, -200, 4750, -200, 4750, 520, 2150, 520)
+vertex_colors = PackedColorArray(0.02, 0.07, 0.12, 0, 0.02, 0.07, 0.12, 0, 0.005, 0.015, 0.04, 1, 0.005, 0.015, 0.04, 1)
+
+[node name="Light1" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(700, -260)
+color = Color(0.5, 0.9, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light2" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(1750, -330)
+color = Color(0.55, 1.0, 0.85, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light3" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(2900, -250)
+color = Color(0.45, 0.8, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light4" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(3700, -350)
+color = Color(0.5, 0.95, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light5" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(4450, -420)
+color = Color(0.6, 1.0, 0.9, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light6" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(5200, -380)
+color = Color(0.5, 1.0, 0.8, 1.0)
+energy = 0.6
+size = 900.0
+
+[node name="Light7" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(5900, -300)
+color = Color(0.4, 0.9, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light8" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(6600, -380)
+color = Color(0.6, 1.0, 0.8, 1.0)
+energy = 0.6
+size = 900.0
+
+[node name="Light9" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(7500, -520)
+color = Color(0.55, 0.85, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light10" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(8100, -700)
+color = Color(0.5, 0.9, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light11" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(8650, -200)
+color = Color(0.5, 0.9, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light12" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(9300, -650)
+color = Color(0.55, 0.85, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="Light13" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(10400, -380)
+color = Color(0.9, 0.6, 0.5, 1.0)
+energy = 0.5
+size = 900.0
+
+[node name="Light14" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(11300, -420)
+color = Color(1.0, 0.5, 0.4, 1.0)
+energy = 0.5
+size = 900.0
+
+[node name="Light15" type="Node2D" parent="World/Flora"]
+script = ExtResource("s_ambient_light")
+position = Vector2(12350, -420)
+color = Color(0.7, 0.9, 1.0, 1.0)
+energy = 0.7
+size = 900.0
+
+[node name="GlowPlant1" type="Area2D" parent="World/Flora"]
+position = Vector2(260, 2)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 90
+bulbs = 2
+seed_value = 2824
+
+[node name="GlowPlant2" type="Area2D" parent="World/Flora"]
+position = Vector2(520, 2)
+script = ExtResource("s_glow_plant")
+color = Color(0.5, 1.0, 0.7, 1.0)
+stalk_height = 110
+bulbs = 2
+seed_value = 7758
+
+[node name="GlowPlant3" type="Area2D" parent="World/Flora"]
+position = Vector2(840, -12)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 100
+bulbs = 4
+seed_value = 1972
+
+[node name="GlowPlant4" type="Area2D" parent="World/Flora"]
+position = Vector2(1180, -64)
+script = ExtResource("s_glow_plant")
+color = Color(0.75, 0.6, 1.0, 1.0)
+stalk_height = 120
+bulbs = 4
+seed_value = 1012
+
+[node name="GlowPlant5" type="Area2D" parent="World/Flora"]
+position = Vector2(1450, -88)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 90
+bulbs = 3
+seed_value = 8493
+
+[node name="GlowPlant6" type="Area2D" parent="World/Flora"]
+position = Vector2(1700, -70)
+script = ExtResource("s_glow_plant")
+color = Color(0.5, 1.0, 0.7, 1.0)
+stalk_height = 100
+bulbs = 4
+seed_value = 9101
+
+[node name="GlowPlant7" type="Area2D" parent="World/Flora"]
+position = Vector2(1960, -28.8571)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 110
+bulbs = 3
+seed_value = 1739
+
+[node name="GlowPlant8" type="Area2D" parent="World/Flora"]
+position = Vector2(4800, -328)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 130
+bulbs = 4
+seed_value = 931
+
+[node name="GlowPlant9" type="Area2D" parent="World/Flora"]
+position = Vector2(4960, -328)
+script = ExtResource("s_glow_plant")
+color = Color(0.5, 1.0, 0.7, 1.0)
+stalk_height = 110
+bulbs = 2
+seed_value = 3135
+
+[node name="GlowPlant10" type="Area2D" parent="World/Flora"]
+position = Vector2(5200, -296)
+script = ExtResource("s_glow_plant")
+color = Color(0.75, 0.6, 1.0, 1.0)
+stalk_height = 150
+bulbs = 3
+seed_value = 692
+
+[node name="GlowPlant11" type="Area2D" parent="World/Flora"]
+position = Vector2(5420, -228.4)
+script = ExtResource("s_glow_plant")
+color = Color(1.0, 0.65, 0.9, 1.0)
+stalk_height = 130
+bulbs = 2
+seed_value = 8319
+
+[node name="GlowPlant12" type="Area2D" parent="World/Flora"]
+position = Vector2(5700, -178)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 160
+bulbs = 3
+seed_value = 9204
+
+[node name="GlowPlant13" type="Area2D" parent="World/Flora"]
+position = Vector2(5820, -178)
+script = ExtResource("s_glow_plant")
+color = Color(0.5, 1.0, 0.7, 1.0)
+stalk_height = 120
+bulbs = 2
+seed_value = 1039
+
+[node name="GlowPlant14" type="Area2D" parent="World/Flora"]
+position = Vector2(6000, -178)
+script = ExtResource("s_glow_plant")
+color = Color(0.75, 0.6, 1.0, 1.0)
+stalk_height = 140
+bulbs = 3
+seed_value = 5335
+
+[node name="GlowPlant15" type="Area2D" parent="World/Flora"]
+position = Vector2(6180, -178)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 170
+bulbs = 4
+seed_value = 8283
+
+[node name="GlowPlant16" type="Area2D" parent="World/Flora"]
+position = Vector2(6380, -200.4)
+script = ExtResource("s_glow_plant")
+color = Color(1.0, 0.65, 0.9, 1.0)
+stalk_height = 120
+bulbs = 4
+seed_value = 8392
+
+[node name="GlowPlant17" type="Area2D" parent="World/Flora"]
+position = Vector2(6600, -258)
+script = ExtResource("s_glow_plant")
+color = Color(0.5, 1.0, 0.7, 1.0)
+stalk_height = 130
+bulbs = 2
+seed_value = 4542
+
+[node name="GlowPlant18" type="Area2D" parent="World/Flora"]
+position = Vector2(6850, -298)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 110
+bulbs = 3
+seed_value = 8326
+
+[node name="GlowPlant19" type="Area2D" parent="World/Flora"]
+position = Vector2(7000, -298)
+script = ExtResource("s_glow_plant")
+color = Color(0.75, 0.6, 1.0, 1.0)
+stalk_height = 140
+bulbs = 4
+seed_value = 7833
+
+[node name="GlowPlant20" type="Area2D" parent="World/Flora"]
+position = Vector2(7400, -298)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 90
+bulbs = 4
+seed_value = 4058
+
+[node name="GlowPlant21" type="Area2D" parent="World/Flora"]
+position = Vector2(8950, -298)
+script = ExtResource("s_glow_plant")
+color = Color(0.5, 1.0, 0.7, 1.0)
+stalk_height = 100
+bulbs = 4
+seed_value = 8573
+
+[node name="GlowPlant22" type="Area2D" parent="World/Flora"]
+position = Vector2(9500, -298)
+script = ExtResource("s_glow_plant")
+color = Color(0.4, 0.95, 1.0, 1.0)
+stalk_height = 100
+bulbs = 3
+seed_value = 9168
+
+[node name="BounceShroom1" type="Area2D" parent="World/Flora"]
+position = Vector2(3430, -50)
+script = ExtResource("s_bounce_shroom")
+
+[node name="BounceShroom2" type="Area2D" parent="World/Flora"]
+position = Vector2(6000, -180)
+script = ExtResource("s_bounce_shroom")
+
+[node name="HiddenArea1" type="Area2D" parent="World/Hidden"]
+position = Vector2(1780, -640)
+script = ExtResource("s_hidden_area")
+size = Vector2(540, 340)
+seed_value = 3320
+
+[node name="HiddenArea2" type="Area2D" parent="World/Hidden"]
+position = Vector2(3730, -590)
+script = ExtResource("s_hidden_area")
+size = Vector2(440, 320)
+seed_value = 7333
+
+[node name="HiddenArea3" type="Area2D" parent="World/Hidden"]
+position = Vector2(5760, -880)
+script = ExtResource("s_hidden_area")
+size = Vector2(480, 340)
+seed_value = 2247
+
+[node name="HiddenArea4" type="Area2D" parent="World/Hidden"]
+position = Vector2(6225, -720)
+script = ExtResource("s_hidden_area")
+size = Vector2(420, 320)
+seed_value = 6827
+
+[node name="RuinsPuzzle" type="Node2D" parent="World/Puzzle"]
+script = ExtResource("s_ruins_puzzle")
+
+[node name="RuneA" type="Area2D" parent="World/Puzzle/RuinsPuzzle"]
+position = Vector2(7450, -300)
+script = ExtResource("s_rune")
+
+[node name="RuneB" type="Area2D" parent="World/Puzzle/RuinsPuzzle"]
+position = Vector2(7750, -770)
+script = ExtResource("s_rune")
+
+[node name="RuneC" type="Area2D" parent="World/Puzzle/RuinsPuzzle"]
+position = Vector2(8650, 60)
+script = ExtResource("s_rune")
+
+[node name="Gate" type="StaticBody2D" parent="World/Puzzle/RuinsPuzzle"]
+position = Vector2(9300, -300)
+script = ExtResource("s_ruins_gate")
+collision_layer = 1
+
+[node name="Checkpoint1" type="Area2D" parent="World/Checkpoints"]
+position = Vector2(2050, -19.2857)
+script = ExtResource("s_checkpoint")
+
+[node name="Checkpoint2" type="Area2D" parent="World/Checkpoints"]
+position = Vector2(4800, -330)
+script = ExtResource("s_checkpoint")
+
+[node name="Checkpoint3" type="Area2D" parent="World/Checkpoints"]
+position = Vector2(7250, -300)
+script = ExtResource("s_checkpoint")
+
+[node name="Checkpoint4" type="Area2D" parent="World/Checkpoints"]
+position = Vector2(9700, -283.333)
+script = ExtResource("s_checkpoint")
+
+[node name="ChasmKillZone" type="Area2D" parent="World/KillZones"]
+position = Vector2(3450, 480)
+script = ExtResource("s_kill_zone")
+
+[node name="Shape" type="CollisionShape2D" parent="World/KillZones/ChasmKillZone"]
+shape = SubResource("rect_0")
+
+[node name="DeepKillZone" type="Area2D" parent="World/KillZones"]
+position = Vector2(6000, 1600)
+script = ExtResource("s_kill_zone")
+
+[node name="Shape" type="CollisionShape2D" parent="World/KillZones/DeepKillZone"]
+shape = SubResource("rect_1")
+
+[node name="Coin0" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(400, -70)
+
+[node name="Coin1" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(520, -70)
+
+[node name="Coin2" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(640, -70)
+
+[node name="Coin3" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1000, -100)
+
+[node name="Coin4" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1100, -120)
+
+[node name="Coin5" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1220, -144)
+
+[node name="Coin6" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1030, -320)
+
+[node name="Coin7" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1370, -470)
+
+[node name="Coin8" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1660, -545)
+
+[node name="Coin9" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1780, -545)
+
+[node name="Coin10" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(1900, -545)
+
+[node name="Cell0" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(1850, -545)
+
+[node name="Coin11" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(2420, -120)
+
+[node name="Coin12" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(2900, -210)
+
+[node name="Coin13" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(3330, -130)
+
+[node name="Coin14" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(3760, -270)
+
+[node name="Coin15" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(4150, -370)
+
+[node name="Coin16" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(4490, -420)
+
+[node name="Coin17" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(3620, -490)
+
+[node name="Coin18" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(3730, -490)
+
+[node name="Coin19" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(3840, -490)
+
+[node name="Coin20" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(4850, -400)
+
+[node name="Coin21" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5000, -400)
+
+[node name="Coin22" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5150, -384)
+
+[node name="Coin23" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5750, -250)
+
+[node name="Coin24" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5900, -250)
+
+[node name="Coin25" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(6050, -250)
+
+[node name="Coin26" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(6200, -250)
+
+[node name="Coin27" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5020, -640)
+
+[node name="Coin28" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5400, -770)
+
+[node name="Coin29" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5640, -790)
+
+[node name="Coin30" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5760, -790)
+
+[node name="Coin31" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(5880, -790)
+
+[node name="Cell1" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(5800, -790)
+
+[node name="Coin32" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(6150, -625)
+
+[node name="Coin33" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(6250, -625)
+
+[node name="Coin34" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(6350, -625)
+
+[node name="Coin35" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(7350, -370)
+
+[node name="Coin36" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(7550, -370)
+
+[node name="Coin37" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(8000, -690)
+
+[node name="Coin38" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(7750, -840)
+
+[node name="Coin39" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(8420, -170)
+
+[node name="Coin40" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(8650, -290)
+
+[node name="Coin41" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(8350, -10)
+
+[node name="Cell2" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(8500, -20)
+
+[node name="Coin42" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(9100, -370)
+
+[node name="Cell3" parent="World/Pickups" instance=ExtResource("6_cell")]
+position = Vector2(10150, -270)
+
+[node name="Coin43" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(10675, -480)
+
+[node name="Coin44" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(11325, -520)
+
+[node name="Coin45" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(11900, -460)
+
+[node name="Coin46" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(10300, -270)
+
+[node name="Coin47" parent="World/Pickups" instance=ExtResource("5_coin")]
+position = Vector2(12300, -330)
+
+[node name="Guardian" parent="World/Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(11350, -260)
+health = 9
+shoot_interval = 1.5
+
+[node name="GuardianAura" type="Node2D" parent="World/Enemies/Guardian"]
+script = ExtResource("s_ambient_light")
+color = Color(1.0, 0.35, 0.3, 1.0)
+energy = 0.8
+size = 520.0
+
+[node name="Player" parent="World" instance=ExtResource("2_player")]
+position = Vector2(300, -60)
+camera_limit_left = -400
+camera_limit_top = -1500
+camera_limit_right = 12850
+camera_limit_bottom = 400
+
+[node name="SpiritLight" type="Node2D" parent="World/Player"]
+script = ExtResource("s_ambient_light")
+color = Color(0.7, 0.95, 1.0, 1.0)
+energy = 0.9
+size = 760.0
+breathe = 0.06
+
+[node name="PortalMarker" type="Marker2D" parent="World"]
+position = Vector2(12450, -260)
+
+[node name="Bounds" type="StaticBody2D" parent="World"]
+collision_layer = 1
+
+[node name="WallLeft" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(-700, -500)
+shape = SubResource("rect_2")
+
+[node name="WallRight" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(12900, -500)
+shape = SubResource("rect_3")
+
+[node name="Foreground" type="Node2D" parent="World"]
+script = ExtResource("s_foreground_layer")
+z_index = 50
+factor = 1.4
+
+[node name="FgTree1" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(1500, 700)
+trunk_width = 77
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = -0.02
+seed_value = 5178
+
+[node name="FgTree2" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(2574, 700)
+trunk_width = 85
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = -0.01
+seed_value = 3485
+
+[node name="FgTree3" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(4259, 700)
+trunk_width = 89
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = 0.06
+seed_value = 2531
+
+[node name="FgTree4" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(5917, 700)
+trunk_width = 93
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = -0.07
+seed_value = 2249
+
+[node name="FgTree5" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(7395, 700)
+trunk_width = 84
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = 0.05
+seed_value = 1543
+
+[node name="FgTree6" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(8802, 700)
+trunk_width = 101
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = -0.07
+seed_value = 3666
+
+[node name="FgTree7" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(9967, 700)
+trunk_width = 97
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = 0.1
+seed_value = 6617
+
+[node name="FgTree8" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(11314, 700)
+trunk_width = 96
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = -0.06
+seed_value = 5219
+
+[node name="FgTree9" type="Node2D" parent="World/Foreground"]
+script = ExtResource("s_tree_decor")
+position = Vector2(12408, 700)
+trunk_width = 93
+tree_height = 2800
+trunk_color = Color(0.004, 0.012, 0.02, 1.0)
+trunk_top_color = Color(0.012, 0.03, 0.045, 1.0)
+rim = Color(0.3, 0.7, 0.8, 0.3)
+leaf_color = Color(0.008, 0.025, 0.035, 1.0)
+canopy = false
+hanging = false
+bushes = 0
+lean = -0.1
+seed_value = 9078
+
+[node name="Atmosphere" type="Node2D" parent="."]
+script = ExtResource("s_atmosphere")
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.6, 0.7, 0.86, 1.0)
+
+[node name="UI" parent="." instance=ExtResource("4_ui")]

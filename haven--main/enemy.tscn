@@ -1,0 +1,205 @@
+[gd_scene load_steps=43 format=3 uid="uid://2oqfqxx5b61g"]
+
+[ext_resource type="Script" uid="uid://cd2dj742ybtwn" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Idle_000.png" id="idle_0"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Idle_001.png" id="idle_1"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Idle_002.png" id="idle_2"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Idle_003.png" id="idle_3"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Idle_004.png" id="idle_4"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Idle_005.png" id="idle_5"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Idle_006.png" id="idle_6"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_000.png" id="walk_0"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_001.png" id="walk_1"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_002.png" id="walk_2"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_003.png" id="walk_3"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_004.png" id="walk_4"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_005.png" id="walk_5"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_006.png" id="walk_6"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_007.png" id="walk_7"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Walk_008.png" id="walk_8"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_000.png" id="attack_0"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_001.png" id="attack_1"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_002.png" id="attack_2"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_003.png" id="attack_3"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_004.png" id="attack_4"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_005.png" id="attack_5"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_006.png" id="attack_6"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_007.png" id="attack_7"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Attack_1_008.png" id="attack_8"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Damage_000.png" id="damage_0"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Damage_001.png" id="damage_1"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Damage_002.png" id="damage_2"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Damage_003.png" id="damage_3"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_000.png" id="death_0"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_001.png" id="death_1"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_002.png" id="death_2"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_003.png" id="death_3"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_004.png" id="death_4"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_005.png" id="death_5"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_006.png" id="death_6"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_007.png" id="death_7"]
+[ext_resource type="Texture2D" path="res://Robot-Character/Death_008.png" id="death_8"]
+[ext_resource type="PackedScene" uid="uid://dc1h72qy67w3g" path="res://enemy_projectile.tscn" id="2_rocket"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_robot"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("idle_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("walk_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("attack_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_8")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("damage_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("damage_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("damage_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("damage_3")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("death_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_8")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_454dt"]
+size = Vector2(70, 132)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=470170794 groups=["enemies"]]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_4gyqm")
+projectile_scene = ExtResource("2_rocket")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1785970370]
+scale = Vector2(0.16, 0.16)
+sprite_frames = SubResource("SpriteFrames_robot")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479695066]
+shape = SubResource("RectangleShape2D_454dt")
+
+[node name="ShootTimer" type="Timer" parent="."]

@@ -13,6 +13,15 @@ offset_right = 400.0
 offset_bottom = 52.0
 theme_override_constants/separation = 9
 
+[node name="Coins" type="Label" parent="."]
+offset_left = 28.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 94.0
+modulate = Color(1, 0.84, 0.36, 1)
+theme_override_font_sizes/font_size = 22
+text = "0 / 0"
+
 [node name="EndScreen" type="Control" parent="."]
 anchors_preset = 15
 anchor_right = 1.0

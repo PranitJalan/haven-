@@ -50,13 +50,26 @@ func reflect() -> void:
 		direction = -direction
 
 
+func cut() -> void:
+	queue_free()
+
+
 func _on_body_entered(body: Node2D) -> void:
-	if reflected:
-		if body != shooter:
-			return
-	elif not body.is_in_group("player"):
+	if body.is_in_group("player"):
+		if not reflected:
+			_hit(body)
 		return
 
+	if body.is_in_group("enemies"):
+		if reflected and body == shooter:
+			_hit(body)
+		return
+
+	# Anything else is terrain, so the rocket stops there.
+	queue_free()
+
+
+func _hit(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.call("take_damage", damage)
 

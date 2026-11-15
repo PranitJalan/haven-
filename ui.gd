@@ -9,6 +9,7 @@ const LOSE_COLOR := Color(0.95, 0.35, 0.4)
 signal restart_requested
 
 @onready var pips: HBoxContainer = $Health
+@onready var coins: Label = $Coins
 @onready var end_screen: Control = $EndScreen
 @onready var title: Label = $EndScreen/Center/Title
 @onready var restart_button: Button = $EndScreen/Center/RestartButton
@@ -42,6 +43,10 @@ func set_health(current: int) -> void:
 	for i in children.size():
 		var pip := children[i] as ColorRect
 		pip.color = PIP_FULL if i < current else PIP_EMPTY
+
+
+func set_coins(collected: int, total: int) -> void:
+	coins.text = "%d / %d" % [collected, total]
 
 
 func show_result(won: bool) -> void:

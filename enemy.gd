@@ -14,6 +14,9 @@ signal died
 
 @export var health := 5
 
+@export var contact_damage := 1
+@export var contact_range := 95.0
+
 @export var shoot_interval := 2.0
 @export var projectile_scene: PackedScene
 
@@ -53,7 +56,22 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if not is_dead:
+		_apply_contact_damage()
 		_update_animation()
+
+
+# Walking into the robot hurts, so closing to katana range is a real risk.
+func _apply_contact_damage() -> void:
+	var player := _find_player()
+
+	if player == null:
+		return
+
+	if global_position.distance_to(player.global_position) > contact_range:
+		return
+
+	if player.has_method("take_damage"):
+		player.call("take_damage", contact_damage)
 
 
 # Walks toward the player until it is close enough to stand and shoot.
@@ -142,12 +160,19 @@ func take_damage(amount: int) -> void:
 		return
 
 	health -= amount
-	print("Enemy health: ", health)
+	_flash()
 
 	if health <= 0:
 		_die()
 	else:
 		_play_once("damage")
+
+
+func _flash() -> void:
+	sprite.modulate = Color(7.0, 7.0, 7.0)
+
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.25)
 
 
 func _die() -> void:

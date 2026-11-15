@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const RUN_ANIMATION_THRESHOLD := 20.0
+const SPRITE_SCALE := Vector2(0.55, 0.55)
 
 signal health_changed(current: int)
 signal died
@@ -15,18 +16,26 @@ signal died
 @export var max_speed := 600.0
 
 @export var max_health := 5
+@export var invincibility_time := 0.9
 
 @export var camera_limit_left := -10000000
 @export var camera_limit_top := -10000000
 @export var camera_limit_right := 10000000
 @export var camera_limit_bottom := 10000000
 
+@export var dust_scene: PackedScene
+
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var shield: Shield = $Shield
 
 var health: int
 var facing_direction := 1.0
 var is_dead := false
+
+var _invincible_remaining := 0.0
+var _shake_strength := 0.0
+var _was_grounded := true
 var _camera_frozen := false
 var _camera_smoothing_enabled := true
 
@@ -51,9 +60,12 @@ func _physics_process(delta: float) -> void:
 	var camera_center := camera_2d.get_screen_center_position()
 	var grounded := is_on_floor()
 
+	_invincible_remaining = maxf(_invincible_remaining - delta, 0.0)
+
 	if is_dead:
 		_apply_death_physics(delta)
 		_update_camera(camera_center)
+		_update_shake(delta)
 		return
 
 	var direction := Input.get_axis("left", "right")
@@ -77,11 +89,19 @@ func _physics_process(delta: float) -> void:
 
 	if jumping:
 		velocity.y = -jump_strength
+		_squash(Vector2(0.82, 1.2))
 	elif not grounded:
 		velocity.y += gravity * delta
 
 	move_and_slide()
+
+	if is_on_floor() and not _was_grounded:
+		_land()
+
+	_was_grounded = is_on_floor()
+
 	_update_camera(camera_center)
+	_update_shake(delta)
 	_update_animation()
 
 
@@ -92,6 +112,51 @@ func _apply_death_physics(delta: float) -> void:
 		velocity.y += gravity * delta
 
 	move_and_slide()
+
+
+func _land() -> void:
+	_squash(Vector2(1.25, 0.76))
+	shake_camera(3.0)
+
+	if dust_scene == null:
+		return
+
+	var dust := dust_scene.instantiate() as Node2D
+
+	if dust == null:
+		return
+
+	get_tree().current_scene.add_child(dust)
+	dust.global_position = global_position + Vector2(0, 55)
+
+
+func _squash(amount: Vector2) -> void:
+	sprite.scale = SPRITE_SCALE * amount
+
+	var tween := create_tween()
+	tween.tween_property(sprite, "scale", SPRITE_SCALE, 0.2)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+
+
+func refill_shield() -> void:
+	shield.refill()
+
+
+func shake_camera(strength: float) -> void:
+	_shake_strength = maxf(_shake_strength, strength)
+
+
+func _update_shake(delta: float) -> void:
+	if _shake_strength <= 0.0:
+		camera_2d.offset = Vector2.ZERO
+		return
+
+	_shake_strength = maxf(_shake_strength - 45.0 * delta, 0.0)
+	camera_2d.offset = Vector2(
+		randf_range(-1.0, 1.0),
+		randf_range(-1.0, 1.0)
+	) * _shake_strength
 
 
 # The camera holds its last grounded position while airborne, so jumping
@@ -110,6 +175,11 @@ func _update_camera(previous_center: Vector2) -> void:
 
 func _update_animation() -> void:
 	sprite.flip_h = facing_direction < 0.0
+
+	if _invincible_remaining > 0.0:
+		sprite.modulate.a = 0.45 + 0.55 * absf(sin(_invincible_remaining * 30.0))
+	else:
+		sprite.modulate.a = 1.0
 
 	if not is_on_floor():
 		_play("jump")
@@ -130,19 +200,32 @@ func _on_animation_finished() -> void:
 
 
 func take_damage(amount: int) -> void:
-	if is_dead:
+	if is_dead or _invincible_remaining > 0.0:
 		return
 
 	health = maxi(health - amount, 0)
 	health_changed.emit(health)
 
+	_invincible_remaining = invincibility_time
+	_flash()
+	shake_camera(9.0)
+
 	if health == 0:
 		_die()
+
+
+func _flash() -> void:
+	sprite.modulate = Color(7.0, 7.0, 7.0)
+
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)
 
 
 func _die() -> void:
 	is_dead = true
 	velocity = Vector2.ZERO
+	sprite.modulate = Color.WHITE
+	sprite.modulate.a = 1.0
 	sprite.animation = &"death"
 	sprite.frame = 0
 	sprite.play(&"death")
